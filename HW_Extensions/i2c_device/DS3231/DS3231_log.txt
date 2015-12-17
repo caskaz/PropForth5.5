@@ -1,0 +1,241 @@
+DS3231
+
+
+
+
+
+
+
+
+
+register value After power on   no battery backup
+Prop0 Cog6 ok
+disp_reg
+Address(hex)  value(hex)
+        00      00
+        01      01
+        02      00
+        03      01
+        04      01
+        05      01
+        06      00
+        07      80
+        08      02
+        09      A3
+        0A      1A
+        0B      30
+        0C      88
+        0D      82
+        0E      1C
+        0F      88
+        10      00
+        11      12
+        12      00
+        
+--- Because of A1M1/A1M3/A2M3/A2M4=1, alarm1/alarm2 is strange        
+Prop0 Cog6 ok
+all
+
+CurrentTime
+Year: 2000
+Date: JAN 1 MON
+Time: 00:01:05
+
+
+Alarm1 setting
+Date: 20
+Time: A3:02:80
+
+
+Alarm2 setting
+Time: 88:30
+
+Prop0 Cog6 ok
+
+
+---- Set current-tome 2013 11/8 Friday  08:08:00
+Prop0 Cog6 ok
+2013 11 8 5 8 8 set_current
+
+CurrentTime
+Year: 2013
+Date: NOV 8 FRI
+Time: 08:08:00
+
+Prop0 Cog6 ok
+all
+
+CurrentTime
+Year: 2013
+Date: NOV 8 FRI
+Time: 08:08:04
+
+
+Alarm1 setting
+Date: 20
+Time: 23:02:00
+
+
+Alarm2 setting
+Date: 2
+Time: 08:30
+
+Prop0 Cog6 ok
+
+
+Prop0 Cog6 ok
+chk_INT
+Alarm1 Flag:0
+Alarm2 Flag:0
+Prop0 Cog6 ok
+8 8 14 set_alm1
+
+Alarm1 setting
+Date: 8
+Time: 08:14:00
+
+Alarm1 Interupt:Enabled
+Alarm2 Interupt:Disabled
+Prop0 Cog6 ok
+
+---  8:14   Alarm1 Flag is 1 INT/SQW-pin goes to low
+Prop0 Cog6 ok
+chk_INT
+Alarm1 Flag:1
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+
+---  Alarm1 Flag is 0    INT/SQW-pin goes to high
+Prop0 Cog6 ok
+alarm1 clr_INT
+Alarm1 Flag:0
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+
+
+
+
+
+
+32.768kHz pulse
+--- Output 32.768kHz pulse from 1-pin
+Prop0 Cog6 ok
+1 32kHz_out
+Prop0 Cog6 ok
+1 32kHz_out
+32.768kHz already is enabled.
+Prop0 Cog6 ok
+--- Disabled 32.768kHz pulse from 1-pin
+0 32kHz_out
+Prop0 Cog6 ok
+0 32kHz_out
+32.768kHz already is disables.
+Prop0 Cog6 ok
+
+
+Temperature
+Prop0 Cog6 ok
+disp_Temp
+30 .0degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .5degree
+
+29 .75degree      <--- Touch by finger on chip
+
+29 .75degree
+
+29 .75degree
+
+29 .75degree
+
+29 .75degree
+
+30 .0degree
+
+30 .0degree
+
+30 .0degree
+
+30 .0degree
+
+30 .0degree
+
+30 .0degree
+
+30 .0degree
+
+30 .0degree
+
+30 .25degree
+
+30 .25degree
+
+30 .25degree
+
+30 .25degree
+
+30 .25degree
+
+Prop0 Cog6 ok
+
+
+
+Check osc status
+if no operate, message print and start
+osc_state
+Oscillator operate
+Prop0 Cog6 ok
+
+
+Always Output pulse from INT/SQW-pin  on frequency by setting RS1/RS2
+Prop0 Cog6 ok
+0 set_INT
+
+
+When INTCN-bit is 1, INT/SQW-pin goes to low at maching current-time and alarm1/alarm2
+
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+

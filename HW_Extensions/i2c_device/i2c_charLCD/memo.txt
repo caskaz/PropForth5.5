@@ -1,0 +1,16 @@
+
+It seems that many ST7032i has no problem
+But some chip cause problem below;
+1. Ack don't become to low bwcause poor drive.
+2. This chip soetimes don't reply any ACK.
+
+I don't know trouble about problem1.
+But charLCD I bought cause problem2.
+This is caused by using i2c-word for PF5.5.
+After accessing EC@ or EC!, SDA-line become to low. 
+This is bug.  In case of eeprom this has no problem. 
+Before using word inside i2c_utility_0.4, it must execute '0 dira COG!'.
+In case of polite i2c-devices( DS1337,DS3231, etc), it has no problem.
+But ST7032i sometimes cause to reply NACK(i2c-error) only first time.
+To prevent this, SDA-line must be clear by polite i2c-devices only first time when .
+

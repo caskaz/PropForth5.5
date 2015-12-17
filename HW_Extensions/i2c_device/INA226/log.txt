@@ -1,0 +1,51 @@
+2015/11/08 11:29:22
+
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- INA226 reply
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- 39 -- -- -- -- -- -- <-- APDS-9960
+40: 40 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- INA226
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:3
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+ID
+Manufacture ID:h5449
+Die ID:h2260
+Prop0 Cog6 ok
+init_INA226
+Prop0 Cog6 ok
+dispReg
+
+Register                Value
+Configuration(h00):     h4727
+Shunt Voltage(h01):     d47
+Bus Voltage(h02):       d2625
+Power(h03):             d7
+Current(h04):           d47
+Calibration(h05):       d2048
+Mask/Enable(h06):       h8
+Alert Limit(h07):       d0
+Prop0 Cog6 ok
+demo
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .7 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Bus_V:3272 mV   Current:4 .6 mA Power:17 mW
+Prop0 Cog6 ok
+

@@ -1,0 +1,326 @@
+   RTC DS1337     Propeller
+      scl    ----  P28   
+      sda    ----  P29 
+      INTA   ----  n LED p --- 220ohm -- 3.3V
+   SQW/INTB  ----  n LED p --- 220ohm -- 3.3V
+
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+
+Display register value
+Prop0 Cog6 ok
+disp_reg
+Address(hex)  value(hex)
+        00      33
+        01      03
+        02      00
+        03      01
+        04      01
+        05      01
+        06      00
+        07      00
+        08      00
+        09      00
+        0A      00
+        0B      00
+        0C      00
+        0D      00
+        0E      18
+        0F      80
+Prop0 Cog6 ok
+
+--- Set current to 2013/11/5 TUE 20:28:00
+2013 11 5 2 20 28 set_current
+
+CurrentTime
+Year: 2013
+Date: NOV 5 TUE
+Time: 20:28:00
+
+Prop0 Cog6 ok
+--- Set alarm1 to [Date]5 20:30:00
+5 20 30 set_alm1
+
+Alarm1 setting
+Date: 5
+Time: 20:30:00
+
+Alarm1 Interupt:Enabled
+Alarm2 Interupt:Disabled
+Prop0 Cog6 ok
+--- Set alarm2 to [Date]2 20:33
+2 20 33 set_alm2
+
+Alarm2 setting
+Date: 2
+Time: 20:33
+
+Alarm1 Interupt:Enabled
+Alarm2 Interupt:Enabled
+Prop0 Cog6 ok
+--- Check alarm1/alarm2 flag
+chk_INT
+Alarm1 Flag:0
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+--- Display all setting
+all
+
+CurrentTime
+Year: 2013
+Date: NOV 5 TUE
+Time: 20:29:01
+
+
+Alarm1 setting
+Date: 5
+Time: 20:30:00
+
+
+Alarm2 setting
+Date: 2
+Time: 20:33
+
+Prop0 Cog6 ok
+--- Change alarm2 to week of day
+1 alarm2 alm_Day
+Prop0 Cog6 ok
+--- Display all setting
+all
+
+CurrentTime
+Year: 2013
+Date: NOV 5 TUE
+Time: 20:29:14
+
+
+Alarm1 setting
+Date: 5
+Time: 20:30:00
+
+
+Alarm2 setting
+Week: TUE
+Time: 20:33
+
+Prop0 Cog6 ok
+============= INTA-pin goes to Low at 20:30 11/5 TUE
+
+--- Check alarm1/alarm2 flag
+chk_INT
+Alarm1 Flag:1
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+--- Clear INT-flag for alarm1
+============= INTA-pin goes to Hi
+alarm1 clr_INT
+Alarm1 Flag:0
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+
+============= INTA-pin goes to Low at 20:33 11/5 TUE
+
+--- Check alarm1/alarm2 flag
+chk_INT
+Alarm1 Flag:0
+Alarm2 Flag:1
+
+Prop0 Cog6 ok
+--- Clear INT-flag for alarm2
+============= INTA-pin goes to Hi
+alarm2 clr_INT
+Alarm1 Flag:0
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+
+--- Set INTCN  because of using SQW/INTB-pin
+1 set_INTCN
+Prop0 Cog6 ok
+--- Set alarm2 to Tue 20:36
+2 20 36 set_alm2
+
+Alarm2 setting
+Week: TUE
+Time: 20:36
+
+Alarm1 Interupt:Enabled
+Alarm2 Interupt:Enabled
+Prop0 Cog6 ok
+--- Set alarm2 to [No Day/Date]
+1 alarm2 no_DY/DT
+Prop0 Cog6 ok
+
+--- Display all setting
+all
+
+CurrentTime
+Year: 2013
+Date: NOV 5 TUE
+Time: 20:34:26
+
+
+Alarm1 setting
+Date: 5
+Time: 20:30:00
+
+
+Alarm2 setting
+Time: 20:36
+
+Prop0 Cog6 ok
+============= SQW/INTB-pin goes to Low at 21:10 
+
+--- Check alarm1/alarm2 flag
+chk_INT
+Alarm1 Flag:0
+Alarm2 Flag:1
+
+Prop0 Cog6 ok
+--- Clear INT-flag for alarm1
+alarm2 clr_INT
+Alarm1 Flag:0
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+
+--- Back alarm2 to [Day/Date]
+0 alarm2 no_DY/DT
+Prop0 Cog6 ok
+all
+
+CurrentTime
+Year: 2013
+Date: NOV 5 TUE
+Time: 20:36:50
+
+
+Alarm1 setting
+Date: 5
+Time: 20:30:00
+
+
+Alarm2 setting
+Week: TUE
+Time: 20:36
+
+Prop0 Cog6 ok
+
+--- Set current/alarm1/alarm2 to 12Hour-mode
+1 set_12H
+
+CurrentTime
+Year: 2013
+Date: NOV 5 TUE
+Time: PM 08:37:05
+
+
+Alarm1 setting
+Date: 5
+Time: PM 08:30:00
+
+
+Alarm2 setting
+Week: TUE
+Time: PM 08:36
+
+Prop0 Cog6 ok
+--- Set alarm1 to [Date]5 20:40:00
+5 20 40 set_alm1
+
+Alarm1 setting
+Date: 5
+Time: PM 08:40:00
+
+Alarm1 Interupt:Enabled
+Alarm2 Interupt:Enabled
+Prop0 Cog6 ok
+--- Display all setting
+all
+
+CurrentTime
+Year: 2013
+Date: NOV 5 TUE
+Time: PM 08:38:06
+
+
+Alarm1 setting
+Date: 5
+Time: PM 08:40:00
+
+
+Alarm2 setting
+Week: TUE
+Time: PM 08:36
+
+Prop0 Cog6 ok
+============= INTA-pin goes to Low at 20:40 
+
+--- Check alarm1/alarm2 flag
+chk_INT
+Alarm1 Flag:1
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+--- Clear INT-flag for alarm1
+============= INTA-pin goes to Hi
+alarm1 clr_INT
+Alarm1 Flag:0
+Alarm2 Flag:0
+
+Prop0 Cog6 ok
+
+--- Check INTCN
+control DS1337 i2c_rd hex st? sc
+ST: 0000_001F 0000_0000
+2 items cleared
+Prop0 Cog6 ok
+--- Clear INTCN
+0 set_INTCN
+Prop0 Cog6 ok
+control DS1337 i2c_rd st? sc
+ST: 0000_001B 0000_0000
+2 items cleared
+Prop0 Cog6 ok
+
+--- output 8.192kHz from SQW/INTB-pin (default is 32.768kHz) ---
+--- output 8.192kHz from SQW/INTB-pin (default is 32.768kHz) ---
+8kHz set_SQW
+Prop0 Cog6 ok
+--- output 4.096kHz from SQW/INTB-pin ---
+4kHz set_SQW
+Prop0 Cog6 ok
+--- output 32.768kHz from SQW/INTB-pin ---
+32kHz set_SQW
+Prop0 Cog6 ok
+--- output 1Hz from SQW/INTB-pin ---
+1Hz set_SQW
+Prop0 Cog6 ok
+
+
+--- When using external Xtal, DS1337's clock stop ---
+-- 1Hz blinking stop
+0 osc_on/off
+
+--- Re-start DS1337's clock ---
+-- 1Hz blinking re-start
+1 osc_on/off
+
+
+
+

@@ -1,0 +1,91 @@
+Hi.
+
+filename:WS2822_0.3
+
+I wrote code for WS2822.
+This has only basic function.
+There is no demo code.
+
+
+1)Set buffer size
+Set buffer size(3072byte) by nanual because cannot set by code-execution.
+a. Execute 'reboot'
+b. variable WS2822 here W@ d3068 + here W!
+
+2)Setting address
+Addr_struct 1 addr LEDs setAddr
+This word set address to LED(2pcs).
+When setting is successfull, LED's RGB-LED is on.
+To escape addres-setting mode, power slowly must be off and on.
+LED(L)on board firstly is set to cannel-4.
+LED(R)on board secondly is set to cannel-7.
+
+Signal   1bit=4usec
+MTBP:88usec
+BREAK:5msec
+MAB:88usec
+SC:0[8bit]
+channel number:4[8bit]  (When address is 1, channel is 4)
+channel data 2nd:hFO[8bit]  (channel= 1 to 255)
+channel daa 3rd:hD2[8bit]
+channel number:7[8bit]  
+channel data 2nd:hFO[8bit]  (channel= 1 to 255)
+channel daa 3rd:hD2[8bit]
+Sending 8bit: startbit[1bit]+data[8bit]+stopbit[2bit]
+
+Address is written to eeprom inside WS2822.
+I have no idea about max re-writing turn.
+
+
+3)Running
+c" WS2822 buf_size data a_sendData" 0 cogx  
+Sending 8bit data to address[0 - 1023],channel[1 - 3072].
+
+Signal   1bit=4usec
+MTBP:88usec
+BREAK:88use
+MAB:8usec
+SC:startbit[1bit] 0[8bit] stopbit[2bit]
+data[8bit] from buffer
+next data[8bit] from buffer[Blue]
+next data[8bit] from buffer[Green]
+next data[8bit] from buffer[red]
+next data[8bit] from buffer[Blue]
+next data[8bit] from buffer[Green]
+next data[8bit] from buffer[red]
+..
+last data[8bit] from buffer
+Return MTBT
+
+Sending 8bit: startbit[1bit]+data[8bit]+stopbit[2bit]
+
+Total 1scan-time takes 135.352msec.
+
+3) Test
+channel       	address		channel 2nd data  channel 3rd data	Word that set address to WS2822 2pcs
+1 - 255		0 - 84		hF0			hD2		Addr_struct 0 addr LEDs setAddr
+256 - 513    	85 - 170	hE1			hD2		Addr_struct d85 addr LEDs setAddr
+514 - 768	171 - 255	hD2			hD2		Addr_struct d171 addr LEDs setAddr
+769 - 1023	256 - 340	hC3			hD2		Addr_struct d256 addr LEDs setAddr
+1024 - 1281	341 - 426	hB4			hD2		Addr_struct d341 addr LEDs setAddr
+1282 - 1536 	427 - 511	hA5			hD2		Addr_struct d427 addr LEDs setAddr
+1537 - 1791	512 - 596	h96			hD2		Addr_struct d512 addr LEDs setAddr
+1792 - 2049	597 - 682	h87			hD2		Addr_struct d597 addr LEDs setAddr
+2050 - 2304	683 - 767	h78			hD2		Addr_struct d683 addr LEDs setAddr
+2305 - 2559	768 - 852	h69			hD2		Addr_struct d768 addr LEDs setAddr
+2560 - 2817	853 - 938	h5A			hD2		Addr_struct d853 addr LEDs setAddr
+2818 - 3072	939 - 1023	h4B			hD2		Addr_struct d939 addr LEDs setAddr
+
+Test 12turn because of only 2pcs WS2822.
+a) Set address		Exsample; Addr_struct 0 addr LEDs setAddr
+b) Execute c" WS2822 buf_size data a_sendData" 0 cogx
+c) 0 addr_LED_on  LED(L) is on. 1st:Blue 2nd:green 3rd:red
+   1 addr_LED_on  LED(R) is on. 1st:Blue 2nd:green 3rd:red
+d) Execute 0 cogreset
+e) Next address 
+   return to a)
+
+
+
+
+

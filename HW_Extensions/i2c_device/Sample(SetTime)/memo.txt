@@ -1,0 +1,16 @@
+
+encoder_0.5.1.f
+Code for encoder
+
+switch_0.1.f
+Code for swich
+
+setTime_0.1.f
+Setting to DS1337 by using swich and encoder
+Loading i2c_utility_0.4.f, DS1337_1.6.f, i2c_charLCD(ST7032)_0.1,f
+(Using a part of these codes)
+1.Entering in Time Set mode by pushing switch for 2seconds.
+2.Selected value by rotating encoder. (Blinking during selection)
+3.Item are year,month,day,weekday,hour,minute,second.
+4.Shift next item by pushing swich for short time
+5.Date and time are written to DS1337's register after setting all.

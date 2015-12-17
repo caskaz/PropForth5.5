@@ -1,0 +1,141 @@
+
+
+      --------       --------------
+ --- |SDA  SD0| --- |SDA  PCF85263 |
+ --- |SCL  SC0| --- |SCL           |
+     |        |      --------------
+     |        |      --------------
+     |     SD1| --- |SDA PCF2129   |
+     |     SC1| --- |SCL           |
+      --------       --------------
+      PCA9546                
+
+
+[code]
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- 03 -- -- -- -- 08 -- -- -- -- -- -- --
+10: 10 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: 20 21 -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 49 4A -- 4C -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- 62 -- -- -- -- -- 68 -- -- -- -- -- -- --
+70: 70 71 -- -- -- -- 76 -- -- -- -- -- -- -- -- --
+i2c_device:14
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+1 switch  <--- PCA9546
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- 03 -- -- -- -- 08 -- -- -- -- -- -- --
+10: 10 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: 20 21 -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 49 4A -- 4C -- -- --
+50: 50 51 -- -- -- -- -- -- -- -- -- -- -- -- -- -- <--- h51:PCF85263
+60: -- -- 62 -- -- -- -- -- 68 -- -- -- -- -- -- --
+70: 70 71 -- -- -- -- 76 -- -- -- -- -- -- -- -- --
+i2c_device:15
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+2 switch  <--- PCA9546
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- 03 -- -- -- -- 08 -- -- -- -- -- -- --
+10: 10 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: 20 21 -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 49 4A -- 4C -- -- --
+50: 50 51 -- -- -- -- -- -- -- -- -- -- -- -- -- -- <--- h51:PCF2129
+60: -- -- 62 -- -- -- -- -- 68 -- -- -- -- -- -- --
+70: 70 71 -- -- -- -- 76 -- -- -- -- -- -- -- -- --
+i2c_device:15
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+[/code]
+
+[code]
+Prop0 Cog6 ok
+rd_allreg
+
+register:value[hex]
+Control_1:8
+Control_2:0
+Control_3:4
+Seconds:D1
+Minutes:35
+Hourd:10
+Days:6
+Weekdays:2
+Months:5
+Years:15
+Second_alarm:80
+Minute_alarm:80
+Hour_alarm:82
+Day_alarm:90
+Weekday_alarm:80
+CLKOUT_ctl:0
+Watchdog_tim_ctl:3
+Watchdog_tim_val:0
+Timestp_ctl:8
+Sec_timestp:55
+Min_timestp:33
+Hour_timestp:10
+Day_timestp:6
+Mon_timestp:5
+Year_timestp:15
+Aging_offset:8
+Prop0 Cog6 ok
+
+d2015 5 2 6 10 19 set_time
+Prop0 Cog6 ok
+rd_time
+
+CurrentTime
+Year: 2015
+Date: MAY 6  WED
+10:19:05
+Prop0 Cog6 ok
+test
+
+CurrentTime
+Year: 2015
+Date: MAY 6  WED
+10:40:26
+
+CurrentTime
+Year: 2015
+Date: MAY 6  WED
+10:40:27
+
+CurrentTime
+Year: 2015
+Date: MAY 6  WED
+10:40:28
+
+CurrentTime
+Year: 2015
+Date: MAY 6  WED
+10:40:29
+
+CurrentTime
+Year: 2015
+Date: MAY 6  WED
+10:40:30
+
+CurrentTime
+Year: 2015
+Date: MAY 6  WED
+10:40:31
+Prop0 Cog6 ok
+
+[/code]
+
+
+
