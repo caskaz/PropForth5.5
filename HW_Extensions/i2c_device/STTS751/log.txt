@@ -1,0 +1,68 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- 39 -- -- -- -- -- -- <--- STTS751
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <--- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+chipID
+Product ID:0
+ManufactureID:h53
+Revision ID:1
+
+Prop0 Cog6 ok
+rdStatus
+None                      <--- Default state
+Prop0 Cog6 ok
+
+rdConfig
+EVENT is disabled
+Standby mode
+10bits
+Prop0 Cog6 ok
+rdConvRate
+1/sec
+Prop0 Cog6 ok
+
+disableEVENT RUN 12bit setConfig
+Prop0 Cog6 ok
+rdConfig
+EVENT is enabled
+Conversion mode
+12bits
+Prop0 Cog6 ok
+Temp
+23 .7500degree
+23 .7500degree
+23 .7500degree
+23 .8175degree
+23 .7500degree
+24 .2500degree
+24 .8175degree
+24 .7500degree
+24 .2500degree
+24 .1250degree
+Prop0 Cog6 ok
+
+disableEVENT RUN 9bit  setConfig rdConfig
+EVENT is enabled
+Conversion mode
+9bits
+Prop0 Cog6 ok
+Temp
+23 .5degree
+23 .5degree
+23 .5degree
+23 .5degree
+23 .5degree
+23 .5degree
+Prop0 Cog6 ok
+
