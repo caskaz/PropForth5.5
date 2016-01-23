@@ -1,0 +1,162 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- 23 -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+Prop0 Cog6 ok
+
+Prop0 Cog6 ok
+cont_HR cont_mode
+92
+93
+90
+82
+92
+125
+158
+173
+174
+192
+203
+207
+257
+302
+345
+384
+409
+415
+427
+434
+455
+465
+477
+476
+475
+477
+477
+475
+282
+93
+15
+12
+24
+437
+458
+463
+465
+465
+465
+465
+462
+242
+51
+134
+40
+96
+338
+443
+444
+448
+Prop0 Cog6 ok
+cont_HR2 cont_mode
+470
+938
+939
+941
+951
+958
+963
+956
+316
+45
+34
+24
+21
+17
+16
+17
+15
+16
+18
+53
+690
+983
+981
+984
+969
+979
+976
+975
+Prop0 Cog6 ok
+cont_LR cont_mode
+304
+304
+304
+304
+304
+112
+48
+28
+12
+4
+0
+0
+0
+0
+28
+308
+304
+304
+304
+304
+304
+304
+304
+304
+304
+Prop0 Cog6 ok
+
+
+
+Prop0 Cog6 ok
+single_HR single_mode
+279
+Prop0 Cog6 ok
+single_HR2 single_mode
+557
+Prop0 Cog6 ok
+single_LR single_mode
+268
+Prop0 Cog6 ok
+
+
+page11
+
+single_HR single_mode
+290                         <--- Normal sensivity
+Prop0 Cog6 ok
+
+ Changing high bit of MTreg
+h44 wr_BH1750FVI err? 
+Prop0 Cog6 ok
+ Changing low bit of MTreg
+h6A wr_BH1750FVI err?
+Prop0 Cog6 ok
+
+ Single Hi-Resolution Mode
+single_HR wr_BH1750FVI err?
+Prop0 Cog6 ok             <-- maybe more than 240msec
+Reading data
+rd_BH1750FVI err? . cr
+581                       <--- 2 times of Normal sensivity
+Prop0 Cog6 ok
+
+
