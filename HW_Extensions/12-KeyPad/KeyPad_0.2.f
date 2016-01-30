@@ -56,7 +56,7 @@ wvariable pointer
 \ ( n1 -- n2 ) n1:top pin number for Row  n2:3bit data
 : rd_sw 
 7 KeyPad lshift
-ina COG@ and 8 rshift             
+ina COG@ and KeyPad rshift             
 ;
 
 \ Read Row1/Row2/Row3 to drive each column
