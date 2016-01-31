@@ -23,18 +23,22 @@ fl
      RS   ---------    QF          |
      R/W  ---------    GND         |
      LED+ ------5V              Resistor
-                                10k ohm  
-        NPN Transistor             |                   
-     LED- --C B------- QG          |
-             E                     |
-             |                     |
-            GND                    | 
+                                10k ohm 
+              5V                   | 
+              |                    |
+             10k                   |
+              |                    |
+LED- ---- C   |                    |                   
+            B---C B--- QG          |
+          E      E                 |
+          |      |                 |
+         GND    GND                | 
                        QH---------NP (Silicon diode)
                                    |
       E ----------------------------                        
 
 
-     2016/01/30 12:52:22
+     2016/01/30 23:55:40
 }
 
 \ Serial out data(6bit) to shift-register
