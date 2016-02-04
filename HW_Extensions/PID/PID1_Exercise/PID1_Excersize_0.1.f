@@ -5,7 +5,7 @@ PID Excersize (Using 12VDC-FAN 2500rpm and 12-KeyPad and characterLCD)
 
     PropForth 5.5(DevKernel) 
 
-2016/02/04 13:03:04
+2016/02/04 20:20:56
 }
 \ Re-defined Word"seral" because it has bugs.
 : serial
@@ -56,7 +56,8 @@ PID Excersize (Using 12VDC-FAN 2500rpm and 12-KeyPad and characterLCD)
 \ Top pin for KeyPad(7 continued pins)
 \ from P8 to 14     [Raws from P8 to P10]  [Columns from P11 to P14]
 8 wconstant KeyPad
-d4000000 constant 50msec
+d4000000 constant 50msec      \ low rotation
+\ d1600000 constant 20msec     \ fast rotation
 d900 wconstant scale
 d2500 wconstant max_setPoint
 d4096 wconstant maxK
@@ -72,7 +73,8 @@ h1FC	wconstant phsa
 0 wconstant _pwm
 1 wconstant _sense
 1 _sense lshift constant _sensem
-d4000000 constant pwmMax
+d4000000 constant pwmMax      \ low rotation
+\ d1600000 constant pwmMax     \ fast rotation
 \ Time during 1-rotation of DC12V-FAN
 variable T
 d900 wconstant scale 

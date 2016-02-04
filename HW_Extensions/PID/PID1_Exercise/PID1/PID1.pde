@@ -60,6 +60,8 @@ void setup(){
   Port = new Serial(this, "COM5", 9600);
   // 20 for 1second
   frameRate(20);
+  // 50 for 1second
+//  frameRate(50);
 }
 
 void draw(){
