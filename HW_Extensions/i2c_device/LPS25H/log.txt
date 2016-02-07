@@ -1,0 +1,66 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- 5C -- -- -- <-- h50:eeprom  h5C:LPS25H
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+chkID
+Correct  deviceID:hBD
+Prop0 Cog6 ok
+disp_reg
+Register:hex            Value[hex]
+REF_P_XL:8              0
+REF_P_L:9               0
+REF_P_H:A               0
+WHO_AM_I:F              BD
+RES_CONF:10             0
+CTRL_REG1:20            0
+CTRL_REG2:21            0
+CTRL_REG3:22            0
+CTRL_REG4:23            0
+INT_CFG:24              0
+INT_SOURCE:25           0
+STATUS_REG:27           0
+PRESS_OUTXL:28          0
+PRESS_OUT_L:29          80
+PRESS_OUT_H:2A          2F
+TEMP_OUT_L:2B           0
+TEMP_OUT_H:2C           0
+FIFO_CTRL:2E            0
+FIFO_STATUS:2F          20
+THS_P_L:30              0
+THS_P_H:31              0
+RPDS_L:39               0
+RPDS_H:3A               0
+
+Prop0 Cog6 ok
+measure_1shot
+20 .9 degree    1023 .31 hPa
+20 .9 degree    1023 .32 hPa
+20 .8 degree    1023 .30 hPa
+20 .8 degree    1023 .31 hPa
+20 .7 degree    1023 .30 hPa
+20 .7 degree    1023 .27 hPa
+20 .7 degree    1023 .35 hPa
+20 .6 degree    1023 .31 hPa
+Prop0 Cog6 ok
+measure_FIFO
+20 .6 degree    1023 .31 hPa
+19 .8 degree    1023 .36 hPa
+19 .7 degree    1023 .43 hPa
+19 .7 degree    1023 .42 hPa
+19 .7 degree    1023 .31 hPa
+19 .7 degree    1023 .30 hPa
+19 .7 degree    1023 .33 hPa
+19 .6 degree    1023 .33 hPa
+19 .6 degree    1023 .39 hPa
+Prop0 Cog6 ok
