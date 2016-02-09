@@ -50,8 +50,6 @@ s, AC1: s, AC2: s, AC3: s, AC4: s, AC5: s, AC6: s, B1: s, B2: s, MB: s, MC: s, M
 \ buffer for coefficients
 variable coefficient d40 allot
 \ Temperature and Pressure
-wvariable UT
-variable UP
 wvariable oss
 variable UT
 variable UP
