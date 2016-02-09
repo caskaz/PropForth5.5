@@ -30,23 +30,30 @@ MB:-32768
 MC:-11786
 MD:2441
 Prop0 Cog6 ok
-0 measure
-27044 44306     19 .3 degree    102217 Pa
-27042 44306     19 .3 degree    102213 Pa
-27043 44308     19 .3 degree    102219 Pa
-27045 44304     19 .3 degree    102217 Pa
-27045 44308     19 .3 degree    102227 Pa
-27044 44305     19 .3 degree    102213 Pa
-27046 44308     19 .3 degree    102227 Pa
-27044 44308     19 .3 degree    102221 Pa
-27046 44304     19 .3 degree    102217 Pa
-27046 44304     19 .3 degree    102217 Pa
-27047 44305     19 .3 degree    102219 Pa
-27046 44304     19 .3 degree    102217 Pa
-27046 44304     19 .3 degree    102217 Pa
-27047 44304     19 .3 degree    102217 Pa
-27047 44306     19 .3 degree    102221 Pa
-27046 44306     19 .3 degree    102221 Pa
+oss0 measure
+26996 44106     19 .0 degree    101543 Pa
+26996 44105     19 .0 degree    101541 Pa
+26996 44107     19 .0 degree    101547 Pa
+26997 44104     19 .0 degree    101541 Pa
+26997 44103     19 .0 degree    101539 Pa
+26999 44104     19 .0 degree    101543 Pa
+26997 44104     19 .0 degree    101541 Pa
+26998 44104     19 .0 degree    101541 Pa
+26999 44103     19 .0 degree    101541 Pa
+26999 44103     19 .0 degree    101541 Pa
+27000 44103     19 .0 degree    101545 Pa
+26999 44103     19 .0 degree    101541 Pa
+27001 44102     19 .0 degree    101541 Pa
+27000 44100     19 .0 degree    101535 Pa
+27001 44104     19 .0 degree    101547 Pa
+27001 44103     19 .0 degree    101545 Pa
+27001 44103     19 .0 degree    101545 Pa
+27003 44104     19 .0 degree    101549 Pa
+27002 44103     19 .0 degree    101547 Pa
+27001 44102     19 .0 degree    101541 Pa
+27002 44100     19 .0 degree    101539 Pa
+27001 44098     19 .0 degree    101529 Pa
+27003 44100     19 .0 degree    101539 Pa
   |     |           |               |
   |     |           |             Pressure
   |     |         Temperature
@@ -55,6 +62,52 @@ Prop0 Cog6 ok
   |
 uncompensated temperature 
 
+Prop0 Cog6 ok
+oss1 measure
+27003 88201     19 .0 degree    101539 Pa
+27000 88203     19 .0 degree    101541 Pa
+27002 88203     19 .0 degree    101541 Pa
+27002 88204     19 .0 degree    101543 Pa
+27005 88203     19 .0 degree    101545 Pa
+27003 88198     19 .0 degree    101533 Pa
+27004 88199     19 .0 degree    101539 Pa
+27004 88196     19 .0 degree    101535 Pa
+27004 88200     19 .0 degree    101541 Pa
+27006 88198     19 .0 degree    101541 Pa
+27006 88198     19 .0 degree    101541 Pa
+27007 88192     19 .0 degree    101533 Pa
+27006 88202     19 .0 degree    101547 Pa
+27006 88196     19 .0 degree    101539 Pa
+27008 88193     19 .0 degree    101539 Pa
+27007 88192     19 .0 degree    101533 Pa
+Prop0 Cog6 ok
+oss2 measure
+27006 176387    19 .0 degree    101535 Pa
+27006 176385    19 .0 degree    101533 Pa
+27007 176386    19 .0 degree    101535 Pa
+27008 176385    19 .0 degree    101539 Pa
+27007 176378    19 .0 degree    101529 Pa
+27010 176379    19 .0 degree    101537 Pa
+27012 176381    19 .1 degree    101543 Pa
+27011 176377    19 .1 degree    101537 Pa
+27012 176377    19 .1 degree    101541 Pa
+27014 176376    19 .1 degree    101543 Pa
+27012 176380    19 .1 degree    101543 Pa
+27013 176378    19 .1 degree    101545 Pa
+27014 176375    19 .1 degree    101543 Pa
+Prop0 Cog6 ok
+oss3 measure
+27006 352772    19 .0 degree    101535 Pa
+27006 352752    19 .0 degree    101527 Pa
+27008 352747    19 .0 degree    101531 Pa
+27010 352752    19 .0 degree    101535 Pa
+27011 352748    19 .1 degree    101535 Pa
+27011 352741    19 .1 degree    101531 Pa
+27014 352723    19 .1 degree    101533 Pa
+27015 352731    19 .1 degree    101535 Pa
+27016 352721    19 .1 degree    101537 Pa
+27016 352712    19 .1 degree    101533 Pa
+27016 352709    19 .1 degree    101531 Pa
 Prop0 Cog6 ok
 
 

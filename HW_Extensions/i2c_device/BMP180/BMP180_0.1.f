@@ -6,7 +6,7 @@ Using i2c_utility_0.4_1.f
       
 PropForth 5.5(DevKernel)
 
-2016/02/07 12:47:43
+2016/02/09 13:13:14
 
     BMP180 module    Propeller
           Vcc   ----  3.3V
@@ -51,7 +51,7 @@ s, AC1: s, AC2: s, AC3: s, AC4: s, AC5: s, AC6: s, B1: s, B2: s, MB: s, MC: s, M
 variable coefficient d40 allot
 \ Temperature and Pressure
 wvariable UT
-wvariable UP
+variable UP
 wvariable oss
 variable UT
 variable UP
@@ -143,8 +143,8 @@ begin
      3 outMsb BMP180 i2c_rd_multi  \ Get Pressure ( MSB LSB XLSB )
      swap 8 lshift or swap d16 lshift or     \ ( 24bit )
      8 oss W@ - rshift   
-     UP W!                 
-                     UP W@ .   9 emit                     
+     UP L!                 
+                     UP L@ .   9 emit                     
      \ Calculate true Temperature
      \ X1=(UT-AC6)*AC5/32768
      UT W@ coefficient d20 + L@ - coefficient d16 + L@ * d32768 / X1 L!
@@ -205,7 +205,7 @@ until
 
 {
 \ Calculation for values of BMP180.pdf
-\ ( n1 -- ) n1:oss*
+\ ( n1 -- ) n1:oss 
 : test
 \ saveCoeff
 
@@ -224,19 +224,22 @@ d2868 coefficient d40 + L!
 \ begin
      oss W!
      \ Read uncompressed Temperature
-     h2E Control BMP180 i2c_wr     \ Start Temp-measurement     
-     5 delms                       \ wait
-     2 outMsb BMP180 i2c_rd_multi  \ Get Temperature
-     swap 8 lshift or 
-     UT W!        d27898 UT W!   UT W@ . 
+\     h2E Control BMP180 i2c_wr     \ Start Temp-measurement     
+\     5 delms                       \ wait
+\     2 outMsb BMP180 i2c_rd_multi  \ Get Temperature
+\     swap 8 lshift or 
+\     UT W!        
+     d27898 UT W!   UT W@ . 
+
      \ Read uncompressed Pressure
-     oss W@ 6 lshift               \ ( n1<<6 )
-     h34 or Control BMP180 i2c_wr  \ Start Pressure-measurement   
-     oss_wait oss W@ + C@ delms    \ Wait  
-     3 outMsb BMP180 i2c_rd_multi  \ Get Pressure ( MSB LSB XLSB )
-     swap 8 lshift or swap d16 lshift or     \ ( 24bit )
-     8 oss W@ - rshift   
-     UP W!      d23843 UP W!  UP W@ .   cr              
+\     oss W@ 6 lshift               \ ( n1<<6 )
+\     h34 or Control BMP180 i2c_wr  \ Start Pressure-measurement   
+\     oss_wait oss W@ + C@ delms    \ Wait  
+\     3 outMsb BMP180 i2c_rd_multi  \ Get Pressure ( MSB LSB XLSB )
+\     swap 8 lshift or swap d16 lshift or     \ ( 24bit )
+\     8 oss W@ - rshift   
+\     UP L!
+     d23843 oss W@ lshift UP L! UP L@ . cr             
                                            
      \ Calculate true Temperature
      \ X1=(UT-AC6)*AC5/32768
