@@ -1,0 +1,292 @@
+A0=A1=GND
+
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+
+Motor_test     <-- Drive DC-Motor from 0.48V to 2.97V
+Foward
+VSET DAC H-Bridge
+  6     forward
+FAULT register:4
+
+VSET DAC H-Bridge
+  7     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  8     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  9     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  A     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  B     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  C     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  D     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  E     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  F     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  10     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  11     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  12     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  13     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  14     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  15     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  16     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  17     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  18     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  19     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  1A     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  1B     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  1C     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  1D     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  1E     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  1F     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  20     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  21     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  22     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  23     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  24     forward
+FAULT register:0
+
+VSET DAC H-Bridge
+  25     forward
+FAULT register:0
+
+
+
+Reverse
+VSET DAC H-Bridge
+  6     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  7     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  8     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  9     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  A     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  B     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  C     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  D     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  E     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  F     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  10     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  11     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  12     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  13     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  14     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  15     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  16     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  17     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  18     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  19     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  1A     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  1B     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  1C     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  1D     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  1E     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  1F     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  20     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  21     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  22     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  23     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  24     reverse
+FAULT register:0
+
+VSET DAC H-Bridge
+  25     reverse
+FAULT register:0
+
+Prop0 Cog6 ok
+
+CONTROL?
+VSET DAC H-Bridge
+  0     standby
+Prop0 Cog6 ok
+
+
+
+
+
+
+
