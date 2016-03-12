@@ -1,0 +1,126 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- 2A -- -- -- -- --   <-- ColorSensor
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --   <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+
+Prop0 Cog6 ok
+test
+control:E4
+manual timing:0C30
+
+
+Prop0 Cog6 ok
+hD31 Set_manual_timing test
+control:E4
+manual timing:D31
+
+Executing cycle-power
+
+Prop0 Cog6 ok
+test
+control:E4
+manual timing:C30
+
+
+Prop0 Cog6 ok
+sample1
+Infrared:810 Blue:6469 Green:5330 Red:3199
+Infrared:498 Blue:1777 Green:3828 Red:4159
+Infrared:650 Blue:1888 Green:4154 Red:6416
+Infrared:676 Blue:1905 Green:4259 Red:6751
+Infrared:1923 Blue:2942 Green:8256 Red:17661         RED
+Infrared:1767 Blue:2654 Green:6412 Red:22939
+Infrared:646 Blue:1615 Green:5337 Red:24788
+Infrared:290 Blue:1249 Green:2445 Red:9543
+Infrared:1025 Blue:3677 Green:14466 Red:4153         GREEN
+Infrared:1450 Blue:5045 Green:20024 Red:4420
+Infrared:1273 Blue:4511 Green:18891 Red:4613
+Infrared:1399 Blue:4997 Green:21255 Red:4704
+Infrared:307 Blue:1396 Green:8568 Red:4267
+Infrared:1990 Blue:24429 Green:13619 Red:4738         BLUE
+Infrared:2360 Blue:29953 Green:16392 Red:5220
+Infrared:2182 Blue:30106 Green:16288 Red:4845
+Infrared:2268 Blue:29393 Green:15981 Red:5101
+..
+Infrared:11 Blue:44 Green:96 Red:78
+Infrared:300 Blue:1338 Green:3858 Red:3058
+Infrared:3645 Blue:3889 Green:4642 Red:1590       INFRARED
+Infrared:5008 Blue:5440 Green:5978 Red:6051
+Infrared:4767 Blue:5201 Green:6806 Red:5969
+Infrared:3438 Blue:3553 Green:4990 Red:5394
+Infrared:3906 Blue:4774 Green:5223 Red:5375
+Infrared:450 Blue:1789 Green:3863 Red:3062
+Infrared:449 Blue:1789 Green:3858 Red:3060
+Infrared:449 Blue:1788 Green:3859 Red:3060
+Prop0 Cog6 ok
+
+About sample1;
+This word execute delay(2200msec) after executing 'd2200 h84 ColorSensor rd_ColorSensor'.
+ADC is reseted inside 'rd_ColorSensor'.
+But actually color-values don't change if there is not last delay(500msec).
+I have no idea about this reason.
+Needing more investigating.
+
+
+Prop0 Cog6 ok
+sample2
+...
+Infrared:56 Blue:67 Green:158 Red:726          RED
+Infrared:56 Blue:68 Green:161 Red:739
+Infrared:56 Blue:69 Green:167 Red:759
+Infrared:56 Blue:70 Green:171 Red:776
+Infrared:58 Blue:73 Green:183 Red:826
+Infrared:58 Blue:77 Green:195 Red:893
+Infrared:56 Blue:74 Green:190 Red:882
+Infrared:53 Blue:73 Green:187 Red:852
+Infrared:48 Blue:70 Green:174 Red:761
+Infrared:47 Blue:69 Green:173 Red:729
+Infrared:53 Blue:76 Green:188 Red:799
+Infrared:53 Blue:75 Green:192 Red:843
+Infrared:49 Blue:72 Green:189 Red:815
+Infrared:44 Blue:68 Green:169 Red:706
+Infrared:42 Blue:65 Green:161 Red:651
+..
+Infrared:98 Blue:1214 Green:624 Red:157         GREEN
+Infrared:97 Blue:1201 Green:619 Red:152
+Infrared:96 Blue:1188 Green:611 Red:155
+Infrared:95 Blue:1177 Green:608 Red:152
+Infrared:94 Blue:1172 Green:605 Red:149
+Infrared:94 Blue:1163 Green:601 Red:154
+Infrared:95 Blue:1167 Green:603 Red:150
+Infrared:95 Blue:1173 Green:606 Red:153
+Infrared:95 Blue:1178 Green:610 Red:153
+Infrared:95 Blue:1176 Green:607 Red:153
+Infrared:95 Blue:1174 Green:608 Red:154
+Infrared:96 Blue:1176 Green:609 Red:150
+Infrared:95 Blue:1178 Green:608 Red:154
+Infrared:95 Blue:1183 Green:611 Red:152
+..
+Infrared:58 Blue:748 Green:397 Red:118         blue
+Infrared:59 Blue:746 Green:393 Red:118
+Infrared:59 Blue:748 Green:397 Red:120
+Infrared:60 Blue:753 Green:396 Red:117
+Infrared:59 Blue:754 Green:400 Red:121
+Infrared:59 Blue:761 Green:401 Red:117
+Infrared:60 Blue:765 Green:405 Red:121
+Infrared:60 Blue:768 Green:405 Red:117
+Infrared:61 Blue:768 Green:403 Red:119
+..
+Infrared:6 Blue:15 Green:41 Red:39
+Infrared:259 Blue:258 Green:284 Red:299          Infrared
+Infrared:165 Blue:100 Green:124 Red:125
+Infrared:6 Blue:162 Green:58 Red:173
+Infrared:164 Blue:23 Green:175 Red:157
+Infrared:93 Blue:71 Green:63 Red:131
+Infrared:5 Blue:16 Green:44 Red:39
+Prop0 Cog6 ok
