@@ -1,0 +1,243 @@
+Prop0 Cog6 ok
+std_i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- 5A -- -- -- -- --  <-- h50:eeprom  h5A:MLX90614
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+disp_eeprom
+Address Contents        Writable
+00      9984            yes       To_max
+01      62E3            yes       To_min
+02      201             yes       PWMCTRL
+03      F71C            yes       Ta range
+04      FFFF            yes       emissivity correction coefficient
+05      1FB3            yes       config register1
+06      8864            no        Melexis reserved
+07      8864            no        Melexis reserved
+08      8A07            no        Melexis reserved
+09      8F0F            no        Melexis reserved
+0A      A13C            no        Melexis reserved
+0B      0               no        Melexis reserved
+0C      8643            no        Melexis reserved
+0D      A8              no        Melexis reserved
+0E      5A              yes       SMbus address (LSB only)
+0F      0               yes       Melexis reserved
+10      0               no        Melexis reserved
+11      7E0F            no        Melexis reserved
+12      0               no        Melexis reserved
+13      800A            no        Melexis reserved
+14      0               no        Melexis reserved
+15      1C2C            no        Melexis reserved
+16      90              no        Melexis reserved
+17      338C            no        Melexis reserved
+18      0               no        Melexis reserved
+19      0               yes       Melexis reserved
+1A      244A            no        Melexis reserved
+1B      60B6            no        Melexis reserved
+1C      A               no        ID number
+1D      74              no        ID number
+1E      24              no        ID number
+1F      82              no        ID number
+Prop0 Cog6 ok
+disp_RAM
+Address Contents
+00      Melexis reserved:2788
+01      Melexis reserved:9E
+02      Melexis reserved:45F6
+03      Melexis reserved:196E
+04      Raw data IR ch 1:22
+05      Raw data IR ch 2:0
+06      Tambient (16bit format, $27AD=10_157=-70degreeC to $7FFF=32_767=382degreeC):38E9
+07      Tobject1 (16bit format, $27AD=10_157=-70degreeC to $7FFF=32_767=382degreeC):3998
+08      Tobject2 (16bit format, $27AD=10_157=-70degreeC to $7FFF=32_767=382degreeC):148A
+09      Melexis reserved:E4A
+0A      Melexis reserved, Ta1_PKI:39D7
+0B      Melexis reserved, Ta2_PKI:39E3
+0C      Melexis reserved:4BE
+0D      Melexis reserved:0
+0E      Melexis reserved:3A45
+0F      Melexis reserved:52C
+10      Melexis reserved:2
+11      Melexis reserved:1
+12      Melexis reserved:0
+13      Melexis reserved, Scale_Alpha_Ratio:8
+14      Melexis reserved, Scale_Alpha_Slope:C
+15      Melexis reserved, IIR_Filter:4
+16      Melexis reserved, Ta1_PKI_Fraction:5FE0
+17      Melexis reserved, Ta2_PKI_Fraction:0
+18      Melexis reserved:1FF
+19      Melexis reserved:0
+1A      Melexis reserved:2AAB
+1B      Melexis reserved, FIR_Filter:5
+1C      Melexis reserved:1B7
+1D      Melexis reserved:13B
+1E      Melexis reserved:557
+1F      Melexis reserved:2AD
+Prop0 Cog6 ok
+h5D set_SA    < Change SlaveAddress to h5D
+Success to set SA
+Prop0 Cog6 ok
+
+Executinf cycle-power
+
+std_i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- 5D -- --   <-- Changed to h5D
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+
+Reloading "MLX90614_SMBus_0.3.f" after edited hB4 wconstant MLX90614 inside file to hBA 
+disp_eeprom
+Address Contents        Writable
+00      9984            yes       To_max
+01      62E3            yes       To_min
+02      201             yes       PWMCTRL
+03      F71C            yes       Ta range
+04      FFFF            yes       emissivity correction coefficient
+05      1FB3            yes       config register1
+06      8864            no        Melexis reserved
+07      8864            no        Melexis reserved
+08      8A07            no        Melexis reserved
+09      8F0F            no        Melexis reserved
+0A      A13C            no        Melexis reserved
+0B      0               no        Melexis reserved
+0C      8643            no        Melexis reserved
+0D      A8              no        Melexis reserved
+0E      5D              yes       SMbus address (LSB only)    <-- SlaveAddress h5D
+0F      0               yes       Melexis reserved
+10      0               no        Melexis reserved
+11      7E0F            no        Melexis reserved
+12      0               no        Melexis reserved
+13      800A            no        Melexis reserved
+14      0               no        Melexis reserved
+15      1C2C            no        Melexis reserved
+16      90              no        Melexis reserved
+17      338C            no        Melexis reserved
+18      0               no        Melexis reserved
+19      0               yes       Melexis reserved
+1A      244A            no        Melexis reserved
+1B      60B6            no        Melexis reserved
+1C      A               no        ID number
+1D      74              no        ID number
+1E      24              no        ID number
+1F      82              no        ID number
+Prop0 Cog6 ok
+
+Back to h5A
+h5A set_SA
+Success to set SA
+Prop0 Cog6 ok
+
+Executinf cycle-power
+Reloading "MLX90614_SMBus_0.3.f" after edited hBA wconstant MLX90614 inside file to hB4 
+
+                                                                                     demo
+        Raw             degreeC
+Tamb=   14674           20.33degreeC
+Tobj1=  14663           20.11degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14673           20.31degreeC
+Tobj1=  14953           25.91degreeC      <---- Hand above sensor
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14674           20.33degreeC
+Tobj1=  15084           28.53degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14673           20.31degreeC
+Tobj1=  15129           29.43degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14673           20.31degreeC
+Tobj1=  15145           29.75degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14674           20.33degreeC
+Tobj1=  15163           30.11degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14674           20.33degreeC
+Tobj1=  15167           30.19degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14674           20.33degreeC
+Tobj1=  14859           24.03degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14674           20.33degreeC
+Tobj1=  15316           33.17degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14674           20.33degreeC
+Tobj1=  17195           70.75degreeC       <--- iron soldering above sensor
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14675           20.35degreeC
+Tobj1=  17749           81.83degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14675           20.35degreeC
+Tobj1=  17754           81.93degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14678           20.41degreeC
+Tobj1=  17599           78.83degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14678           20.41degreeC
+Tobj1=  18108           89.01degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14681           20.47degreeC
+Tobj1=  17054           67.93degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14681           20.47degreeC
+Tobj1=  16356           53.97degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14682           20.49degreeC
+Tobj1=  16965           66.15degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14682           20.49degreeC
+Tobj1=  16660           60.05degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14683           20.51degreeC
+Tobj1=  16547           57.79degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14684           20.53degreeC
+Tobj1=  16650           59.85degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14684           20.53degreeC
+Tobj1=  15953           45.91degreeC
+Tobj2=  5258            -167.99degreeC
+
+Tamb=   14685           20.55degreeC
+Tobj1=  14753           21.91degreeC
+Tobj2=  5258            -167.99degreeC
+
+Prop0 Cog6 ok
+
