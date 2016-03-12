@@ -149,7 +149,7 @@ Prop0 Cog6 ok
 Executinf cycle-power
 Reloading "MLX90614_SMBus_0.3.f" after edited hBA wconstant MLX90614 inside file to hB4 
 
-                                                                                     demo
+demo
         Raw             degreeC
 Tamb=   14674           20.33degreeC
 Tobj1=  14663           20.11degreeC
