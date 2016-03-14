@@ -1,0 +1,108 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: 40 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- GP2Y0E03
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+disp_reg
+Hold bit                        01
+Maximum Emitting Pulse Width    07
+Spot Symmetry Thresgold         0E
+Signal Intensity Threshold      9E
+Maximum Spot Size Threshold     7F
+Minimum Spot Size Threshold     39
+Shift Bit                       02
+Median Filter                   30
+SRAM Access                     00
+Distance[11:4]                  29
+Distance[3:0]                   01
+AE[15:8]                        00
+AE[7:0]                         34
+AG[7:0]                         00
+Cover Compensation[5:0]         00
+Cover Compensation[10:6]        00
+Cover Compensation Enable Bit   03
+Read out ImageSensor data       00
+Signal Accumlation Number       03
+Enable Bit(Signal Intensity)    00
+Enable Bit(Miniumum spot size)  00
+Enable Bit(Maximum spot size)   01
+Enable Bit(Spot symmetry)       00
+E-Fuse Target Address           80
+E-Fuse Bit Number               00
+E-Fuse Program Enable Bit       00
+E-Fuse Program Data             00
+Active/StandBy State Control    00
+Clock Select                    7F
+Software Reset                  07
+Bank Select                     00
+Right Edge Coordinate(C)        94
+Left Edge Coordinate(A)         53
+Peak Coordinate(B)              73
+Prop0 Cog6 ok
+measure
+102
+102
+102
+102
+102
+102
+102
+Prop0 Cog6 ok
+standby i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:1
+
+
+Prop0 Cog6 ok
+active i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: 40 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+
+--- Draw ImageSensor's graph to Processing ---
+Prop0 Cog6 ok
+draw_ImageSensor
+
+CON:Prop0 Cog5 RESET - last status: 0 ok
+
+--- Execute "ImageSensor_2_4_2" ---
+ Graph display after mouse clicked inside "ImageSensor_2_4_2" window
+ It takes approximate 2seconds
+ 
+ 
+ Forth word"draw_ImageSensor" and Processing"ImageSensor_2_4_2" finish 
+                                                when hitting any key inside "ImageSensor_2_4_2" window
+      CAUTION->Graph become starnge if mouse clicked inside "ImageSensor_2_4_2" window                                          
+                                                
+Prop0 Cog6 ok
+
+
+Changing SlaveAddress is not yet.
