@@ -1,0 +1,152 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+
+Default is Continuous Convesion Mode 12bits PGA-Gain=1
+config-register is h10.
+Prop0 Cog6 ok
+rd_config
+h10 Prop0 Cog6 ok
+
+
+
+ Vin+=500mV Vin-=GND  
+Prop0 Cog6 ok         
+get_A/D           <-- Continuous Convesion Mode 12bits PGA-Gain=1
+
+500
+499
+500
+500
+500
+500
+500
+Prop0 Cog6 ok
+
+                                        Vin+=500mV Vin-=GND
+cont 12bits 2 wr_config  get_A/D    <-- Continuous Convesion Mode 12bits PGA-Gain=2
+
+1000
+999
+999
+1000
+1000
+1000
+Prop0 Cog6 ok
+                                            Vin+=500mV Vin-=GND
+cont 12bits 4 wr_config err? get_A/D    <-- Continuous Convesion Mode 16bits PGA-Gain=4
+
+2000
+2000
+1999
+1999
+2000
+2000
+1999
+Prop0 Cog6 ok
+                                            Vin+=500mV Vin-=GND
+cont 12bits 8 wr_config err? get_A/D    <-- Continuous Convesion Mode 16bits PGA-Gain=8
+
+2047
+2047
+2047
+2047
+2047
+2047
+2047
+2047
+Prop0 Cog6 ok
+                                            Vin+=500mV Vin-=GND
+                                            Conversion-time takes more timr than 12bits
+cont 14bits 1 wr_config err? get_A/D    <-- Continuous Convesion Mode 16bits PGA-Gain=1
+
+2000
+2000
+2000
+2000
+2000
+2000
+2000
+2000
+2000
+2000
+Prop0 Cog6 ok
+                                            Vin+=500mV Vin-=GND
+                                            Conversion-time takes more timr than 12bits
+cont 16bits 1 wr_config err? get_A/D    <-- Continuous Convesion Mode 12bits PGA-Gain=1
+
+7999
+7999
+7999
+7999
+7999
+7999
+7999
+7999
+7999
+7999
+Prop0 Cog6 ok
+                                             Vin+=500mV Vin-=GND
+1shot 12bits 1 wr_config err? get_A/D    <-- One-Shot Convesion Mode 12bits PGA-Gain=1
+
+500
+500
+500
+500
+500
+500
+500
+500
+Prop0 Cog6 ok
+
+
+
+
+
+
+
+
+
+                                             Vin+=FND Vin-=500mV
+cont 12bits 1 wr_config err? get_A/D     <-- Continuous Convesion Mode 16bits PGA-Gain=1
+
+-500
+-500
+-500
+-500
+-500
+-500
+-500
+-500
+Prop0 Cog6 ok
+
+
+
+-- General Call test --
+Prop0 Cog6 ok
+1shot 16bits 4 wr_config err? rd_config
+hA Prop0 Cog6 ok
+
+GenCall_reset
+Prop0 Cog6 ok
+rd_config
+h10 Prop0 Cog6 ok
+
+-- General Call Conversion --
+-- Changing mode to 1shot by General Call Conversion.
+GenCall_1shot rd_config
+h80 Prop0 Cog6 ok
+
+
