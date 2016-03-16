@@ -1,0 +1,156 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- MCP4725 reply 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- MCP4725
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+
+disp_status
+
+--- EEPROM ---
+Value:          2048
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          2048            <-- Analog output terminal is 1.647V(Default state on power-up)
+PowerDownBits:  normal
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+
+d4095 normal DAC_out disp_status                          
+                                    
+--- EEPROM ---
+Value:          2048
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          4095            <-- Analog output terminal is 3.290V  
+PowerDownBits:  normal
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+
+d2000 1k DAC_out disp_status                              
+
+--- EEPROM ---
+Value:          2048
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          2000           <-- Analog output terminal is 0V
+PowerDownBits:  1k
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+
+d1000 500k DAC_out disp_status                        
+
+--- EEPROM ---
+Value:          2048
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          1000           <-- Analog output terminal is 0V
+PowerDownBits:  500k
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+
+reset disp_status                                  
+
+--- EEPROM ---
+Value:          2048
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          2048            <-- Analog output terminal is 1.647V(Default state on power-up)
+PowerDownBits:  normal
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+
+demo1                     D/A conversion time is approximate 366usec.
+-- Hitting any key --
+Prop0 Cog6 ok
+
+demo2                     D/A conversion time is approximate 440usec.
+-- Hitting any key --
+Prop0 Cog6 ok
+disp_status
+
+--- EEPROM ---
+Value:          2048
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          0
+PowerDownBits:  normal
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+reset disp_status
+
+--- EEPROM ---
+Value:          2048
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          2048
+PowerDownBits:  normal
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+
+d3500 normal wr_EEPROM disp_status
+
+--- EEPROM ---
+Value:          595
+PowerDownBits:  500k
+
+--- DAC register ---
+Value:          3500           <-- Analog output terminal is 2.814V
+PowerDownBits:  normal
+Power On Reset: 1
+
+EEPROM Write Status:Busy
+
+Prop0 Cog6 ok
+reset disp_status
+
+--- EEPROM ---
+Value:          3500
+PowerDownBits:  normal
+
+--- DAC register ---
+Value:          3500          <-- Analog output terminal is 2.814V
+PowerDownBits:  normal
+Power On Reset: 1
+
+EEPROM Write Status:Ready
+
+Prop0 Cog6 ok
+
