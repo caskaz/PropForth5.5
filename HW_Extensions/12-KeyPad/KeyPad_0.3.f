@@ -53,10 +53,6 @@ wvariable pointer
 0 debounce W!
 ;
 
-\ Read current sw-state for 1-Row
-\ ( -- n2 ) n1:3bit data
-: rd_sw mKeyPad ina COG@ and KeyPad rshift ;
-
 \ Read Row1/Row2/Row3 to drive each column
 \ ( -- ) 
 : swScan
