@@ -1,0 +1,33 @@
+Prop0 Cog6 ok
+demo1
+10 <- Push "Cansel"key
+0  <- Push "0"key
+12 <- Push "Enter"key
+1  <- Push "1"key
+2  <- Push "2"key
+3  <- Push "3"key
+4  <- Push "4"key
+5  <- Push "5"key
+6  <- Push "6"key
+7  <- Push "7"key
+8  <- Push "8"key
+9  <- Push "9"key
+Prop0 Cog6 ok
+
+CON:Prop0 Cog0 RESET - last status: 0 ok
+
+Prop0 Cog6 ok
+demo2
+          <- Push "Enter"key
+0
+123       <- Push "1" "2" "3" "Enter"
+123
+04563     <- Push "0" "4" "5" "6" "3" "Enter"
+4563
+0146039   <- Push "0" "1" "4" "6" "0" "3" "9"
+146039
+Prop0 Cog6 ok
+
+CON:Prop0 Cog0 RESET - last status: 0 ok
+
+Prop0 Cog6 ok
