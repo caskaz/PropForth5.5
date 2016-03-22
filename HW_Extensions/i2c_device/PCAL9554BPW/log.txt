@@ -1,0 +1,47 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: 20 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  <--- PCAL9554BPW
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  <--- eeprom 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:12
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+rd_allreg
+
+InputPort:              hFF
+OutputPort:             hFF
+PoralityInversion:      h0
+Configuration:          hFF
+OutputDriveStrength0:   hFF
+OutputDriveStrength1:   hFF
+InputLatch:             h0
+Pull_up/down_enable:    hFF
+Pull_up/down_selection: hFF
+InteruptMask:           hFF
+InterruptStatus:        h0
+OutputPortConfiguration:h0
+
+Prop0 Cog6 ok
+I/O-test
+[P7 P6 P5 P4] --> [P3 P2 P1 P0]
+ b7 b6 b3 b4 b3 b2 b1 b0
+0  0  0  1  0  0  0  1
+0  0  1  0  0  0  1  0
+0  1  0  0  0  1  0  0
+1  0  0  0  1  0  0  0
+
+[P7 P6 P5 P4] <- [P3 P2 P1 P0]
+ b7 b6 b3 b4 b3 b2 b1 b0
+1  0  0  0  1  0  0  0
+0  1  0  0  0  1  0  0
+0  0  1  0  0  0  1  0
+0  0  0  1  0  0  0  1
+Prop0 Cog6 ok
