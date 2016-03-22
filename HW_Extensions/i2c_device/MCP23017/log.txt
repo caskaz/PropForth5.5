@@ -1,0 +1,95 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: 20 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  <--- MCP23017
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  <--- eeprom on QuickStart board
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+Prop0 Cog6 ok
+
+Prop0 Cog6 ok
+disp_reg
+Register name   data[hex]
+IODIRA          FF
+IODIRB          FF
+IPOLA           0
+IPOLB           0
+GPINTENA        0
+GPINTENB        0
+DEFVALA         0
+DEFVALB         0
+INTCONA         0
+INTCONB         0
+IOCON           0
+IOCON           0
+GPPUA           0
+GPPUB           0
+INTFA           0
+INTFB           0
+INTCAPA         0
+INTCAPB         0
+GPIOA           0
+GPIOB           0
+OLATA           0
+OLATB           0
+
+Prop0 Cog6 ok
+0 IODIR wr_MCP23017 0 IODIR 1+ wr_MCP23017
+Prop0 Cog6 ok
+disp_reg
+Register name   data[hex]
+IODIRA          0
+IODIRB          0
+IPOLA           0
+IPOLB           0
+GPINTENA        0
+GPINTENB        0
+DEFVALA         0
+DEFVALB         0
+INTCONA         0
+INTCONB         0
+IOCON           0
+IOCON           0
+GPPUA           0
+GPPUB           0
+INTFA           0
+INTFB           0
+INTCAPA         0
+INTCAPB         0
+GPIOA           0
+GPIOB           0
+OLATA           0
+OLATB           0
+Prop0 Cog6 ok
+I/O-test
+GPIOB                     GPIOA
+b7 b6 b5 b4 b3 b2 b1 b0    b7 b6 b5 b4 b3 b2 b1 b0
+0  0  0  0  0  0  0  1  --> 0  0  0  0  0  0  0  1
+0  0  0  0  0  0  1  0  --> 0  0  0  0  0  0  1  0
+0  0  0  0  0  1  0  0  --> 0  0  0  0  0  1  0  0
+0  0  0  0  1  0  0  0  --> 0  0  0  0  1  0  0  0
+0  0  0  1  0  0  0  0  --> 0  0  0  1  0  0  0  0
+0  0  1  0  0  0  0  0  --> 0  0  1  0  0  0  0  0
+0  1  0  0  0  0  0  0  --> 0  1  0  0  0  0  0  0
+1  0  0  0  0  0  0  0  --> 1  0  0  0  0  0  0  0
+
+GPIOA                      GPIOB
+b7 b6 b5 b4 b3 b2 b1 b0    b7 b6 b5 b4 b3 b2 b1 b0
+0  0  0  0  0  0  0  1  --> 0  0  0  0  0  0  0  1
+0  0  0  0  0  0  1  0  --> 0  0  0  0  0  0  1  0
+0  0  0  0  0  1  0  0  --> 0  0  0  0  0  1  0  0
+0  0  0  0  1  0  0  0  --> 0  0  0  0  1  0  0  0
+0  0  0  1  0  0  0  0  --> 0  0  0  1  0  0  0  0
+0  0  1  0  0  0  0  0  --> 0  0  1  0  0  0  0  0
+0  1  0  0  0  0  0  0  --> 0  1  0  0  0  0  0  0
+1  0  0  0  0  0  0  0  --> 1  0  0  0  0  0  0  0
+
+Prop0 Cog6 ok
+
+
