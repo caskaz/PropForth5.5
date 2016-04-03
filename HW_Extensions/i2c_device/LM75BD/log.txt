@@ -1,0 +1,157 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 -- -- -- -- -- -- -- <-- LM75
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+dispReg
+Temp:   h1540   21 .250 degreeC
+Conf:   h0
+Thyst:  h4B00   75 .0degreeC
+Tos:    h5000   80 .0degreeC
+Prop0 Cog6 ok
+25 SetTos                       <-- Change Tos to 25degreeC
+Prop0 Cog6 ok
+23 SetThyst                     <-- Change Thyst to 23degreeC
+Prop0 Cog6 ok
+dispReg
+Temp:   h1520   21 .125 degreeC
+Conf:   h0
+Thyst:  h4B00   75 .0degreeC
+Tos:    h1900   25 .0degreeC
+Prop0 Cog6 ok
+
+demo1
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .250 degreeC
+22 .375 degreeC
+22 .375 degreeC
+22 .625 degreeC
+22 .875 degreeC
+23 .0 degreeC
+23 .125 degreeC
+23 .375 degreeC
+23 .625 degreeC
+24 .0 degreeC
+24 .125 degreeC
+24 .250 degreeC
+24 .250 degreeC
+24 .375 degreeC
+24 .500 degreeC
+24 .875 degreeC
+24 .875 degreeC
+24 .875 degreeC
+25 .125 degreeC     <--- LED is on.
+25 .125 degreeC
+25 .375 degreeC
+25 .250 degreeC
+25 .500 degreeC
+25 .500 degreeC
+25 .625 degreeC
+25 .625 degreeC
+25 .750 degreeC
+25 .750 degreeC
+25 .875 degreeC
+25 .875 degreeC
+25 .750 degreeC
+25 .625 degreeC
+25 .625 degreeC
+25 .625 degreeC
+25 .500 degreeC
+25 .500 degreeC
+25 .500 degreeC
+25 .250 degreeC
+25 .375 degreeC
+25 .250 degreeC
+25 .125 degreeC
+25 .250 degreeC
+25 .125 degreeC
+24 .875 degreeC
+24 .750 degreeC
+24 .875 degreeC
+24 .625 degreeC
+24 .750 degreeC
+24 .750 degreeC
+24 .625 degreeC
+24 .500 degreeC
+24 .375 degreeC
+24 .625 degreeC
+24 .500 degreeC
+24 .375 degreeC
+24 .500 degreeC
+24 .375 degreeC
+24 .375 degreeC
+24 .375 degreeC
+24 .125 degreeC
+24 .125 degreeC
+24 .125 degreeC
+24 .250 degreeC
+24 .0 degreeC
+24 .125 degreeC
+24 .125 degreeC
+24 .0 degreeC
+23 .875 degreeC
+23 .750 degreeC
+24 .0 degreeC
+23 .875 degreeC
+23 .750 degreeC
+23 .750 degreeC
+23 .625 degreeC
+23 .625 degreeC
+23 .750 degreeC
+23 .875 degreeC
+23 .625 degreeC
+23 .625 degreeC
+23 .750 degreeC
+23 .625 degreeC
+23 .750 degreeC
+23 .500 degreeC
+23 .500 degreeC
+23 .750 degreeC
+23 .625 degreeC
+23 .500 degreeC
+23 .375 degreeC
+23 .375 degreeC
+23 .250 degreeC
+23 .375 degreeC
+23 .375 degreeC
+23 .375 degreeC
+23 .375 degreeC
+23 .375 degreeC
+23 .375 degreeC
+23 .125 degreeC
+23 .125 degreeC
+23 .125 degreeC
+23 .125 degreeC
+23 .125 degreeC
+23 .125 degreeC
+23 .250 degreeC
+23 .125 degreeC
+23 .125 degreeC
+23 .125 degreeC
+23 .0 degreeC       <-- LED is off.
+22 .750 degreeC
+22 .750 degreeC
+22 .750 degreeC
+22 .750 degreeC
+22 .750 degreeC
+Prop0 Cog6 ok
