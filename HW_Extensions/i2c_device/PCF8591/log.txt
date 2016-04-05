@@ -1,0 +1,482 @@
+Prop0	Cog6	ok
+std_i2c_detect
+Prop0 Cog6 ok
+std_i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+A/D_test
+158
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+189
+188
+188
+188
+188
+188
+188
+188
+188
+188
+188
+188
+188
+188
+188
+188
+187
+187
+187
+187
+187
+186
+186
+186
+185
+185
+185
+185
+184
+184
+184
+184
+184
+184
+183
+183
+182
+182
+182
+182
+181
+180
+180
+180
+Prop0 Cog6 ok
+demo1
+Setting[D/A]:0   ch3:0 ch2:0 ch1:0 ch0:0 previous-ch0:0
+Setting[D/A]:1   ch3:0 ch2:0 ch1:0 ch0:1 previous-ch0:0
+Setting[D/A]:2   ch3:0 ch2:0 ch1:0 ch0:2 previous-ch0:1
+Setting[D/A]:3   ch3:0 ch2:0 ch1:0 ch0:3 previous-ch0:2
+Setting[D/A]:4   ch3:0 ch2:0 ch1:0 ch0:3 previous-ch0:3
+Setting[D/A]:5   ch3:0 ch2:0 ch1:0 ch0:4 previous-ch0:3
+Setting[D/A]:6   ch3:0 ch2:0 ch1:0 ch0:6 previous-ch0:4
+Setting[D/A]:7   ch3:0 ch2:0 ch1:0 ch0:6 previous-ch0:5
+Setting[D/A]:8   ch3:0 ch2:0 ch1:0 ch0:7 previous-ch0:6
+Setting[D/A]:9   ch3:0 ch2:0 ch1:0 ch0:8 previous-ch0:7
+Setting[D/A]:10   ch3:0 ch2:0 ch1:0 ch0:9 previous-ch0:8
+Setting[D/A]:11   ch3:0 ch2:0 ch1:0 ch0:10 previous-ch0:9
+Setting[D/A]:12   ch3:0 ch2:0 ch1:0 ch0:11 previous-ch0:10
+Setting[D/A]:13   ch3:0 ch2:0 ch1:0 ch0:12 previous-ch0:11
+Setting[D/A]:14   ch3:0 ch2:0 ch1:0 ch0:13 previous-ch0:12
+Setting[D/A]:15   ch3:0 ch2:0 ch1:0 ch0:14 previous-ch0:13
+Setting[D/A]:16   ch3:0 ch2:0 ch1:0 ch0:15 previous-ch0:14
+Setting[D/A]:17   ch3:0 ch2:0 ch1:0 ch0:16 previous-ch0:15
+Setting[D/A]:18   ch3:0 ch2:0 ch1:0 ch0:17 previous-ch0:16
+Setting[D/A]:19   ch3:0 ch2:0 ch1:0 ch0:18 previous-ch0:17
+Setting[D/A]:20   ch3:0 ch2:0 ch1:0 ch0:19 previous-ch0:18
+Setting[D/A]:21   ch3:0 ch2:0 ch1:0 ch0:20 previous-ch0:19
+Setting[D/A]:22   ch3:0 ch2:0 ch1:0 ch0:21 previous-ch0:20
+Setting[D/A]:23   ch3:0 ch2:0 ch1:0 ch0:22 previous-ch0:21
+Setting[D/A]:24   ch3:0 ch2:0 ch1:0 ch0:23 previous-ch0:22
+Setting[D/A]:25   ch3:0 ch2:0 ch1:0 ch0:24 previous-ch0:23
+Setting[D/A]:26   ch3:0 ch2:0 ch1:0 ch0:25 previous-ch0:24
+Setting[D/A]:27   ch3:0 ch2:0 ch1:0 ch0:26 previous-ch0:25
+Setting[D/A]:28   ch3:0 ch2:0 ch1:0 ch0:27 previous-ch0:26
+Setting[D/A]:29   ch3:0 ch2:0 ch1:0 ch0:28 previous-ch0:27
+Setting[D/A]:30   ch3:0 ch2:0 ch1:0 ch0:29 previous-ch0:28
+Setting[D/A]:31   ch3:0 ch2:0 ch1:0 ch0:30 previous-ch0:29
+Setting[D/A]:32   ch3:0 ch2:0 ch1:0 ch0:31 previous-ch0:30
+Setting[D/A]:33   ch3:0 ch2:0 ch1:0 ch0:32 previous-ch0:31
+Setting[D/A]:34   ch3:0 ch2:0 ch1:0 ch0:33 previous-ch0:32
+Setting[D/A]:35   ch3:0 ch2:0 ch1:0 ch0:34 previous-ch0:33
+Setting[D/A]:36   ch3:0 ch2:0 ch1:0 ch0:35 previous-ch0:34
+Setting[D/A]:37   ch3:0 ch2:0 ch1:0 ch0:36 previous-ch0:35
+Setting[D/A]:38   ch3:0 ch2:0 ch1:0 ch0:37 previous-ch0:36
+Setting[D/A]:39   ch3:0 ch2:0 ch1:0 ch0:38 previous-ch0:37
+Setting[D/A]:40   ch3:0 ch2:0 ch1:0 ch0:39 previous-ch0:38
+Setting[D/A]:41   ch3:0 ch2:0 ch1:0 ch0:40 previous-ch0:39
+Setting[D/A]:42   ch3:0 ch2:0 ch1:0 ch0:41 previous-ch0:40
+Setting[D/A]:43   ch3:0 ch2:0 ch1:0 ch0:42 previous-ch0:41
+Setting[D/A]:44   ch3:0 ch2:0 ch1:0 ch0:43 previous-ch0:42
+Setting[D/A]:45   ch3:0 ch2:0 ch1:0 ch0:44 previous-ch0:43
+Setting[D/A]:46   ch3:0 ch2:0 ch1:0 ch0:45 previous-ch0:44
+Setting[D/A]:47   ch3:0 ch2:0 ch1:0 ch0:46 previous-ch0:45
+Setting[D/A]:48   ch3:0 ch2:0 ch1:0 ch0:47 previous-ch0:46
+Setting[D/A]:49   ch3:0 ch2:0 ch1:0 ch0:48 previous-ch0:47
+Setting[D/A]:50   ch3:0 ch2:0 ch1:0 ch0:49 previous-ch0:48
+Setting[D/A]:51   ch3:0 ch2:0 ch1:0 ch0:50 previous-ch0:49
+Setting[D/A]:52   ch3:0 ch2:0 ch1:0 ch0:51 previous-ch0:50
+Setting[D/A]:53   ch3:0 ch2:0 ch1:0 ch0:52 previous-ch0:51
+Setting[D/A]:54   ch3:0 ch2:0 ch1:0 ch0:53 previous-ch0:52
+Setting[D/A]:55   ch3:0 ch2:0 ch1:0 ch0:54 previous-ch0:53
+Setting[D/A]:56   ch3:0 ch2:0 ch1:0 ch0:55 previous-ch0:54
+Setting[D/A]:57   ch3:0 ch2:0 ch1:0 ch0:56 previous-ch0:55
+Setting[D/A]:58   ch3:0 ch2:0 ch1:0 ch0:57 previous-ch0:56
+Setting[D/A]:59   ch3:0 ch2:0 ch1:0 ch0:58 previous-ch0:57
+Setting[D/A]:60   ch3:0 ch2:0 ch1:0 ch0:59 previous-ch0:58
+Setting[D/A]:61   ch3:0 ch2:0 ch1:0 ch0:60 previous-ch0:59
+Setting[D/A]:62   ch3:0 ch2:0 ch1:0 ch0:61 previous-ch0:60
+Setting[D/A]:63   ch3:0 ch2:0 ch1:0 ch0:62 previous-ch0:61
+Setting[D/A]:64   ch3:0 ch2:0 ch1:0 ch0:63 previous-ch0:62
+Setting[D/A]:65   ch3:0 ch2:0 ch1:0 ch0:64 previous-ch0:63
+Setting[D/A]:66   ch3:0 ch2:0 ch1:0 ch0:65 previous-ch0:64
+Setting[D/A]:67   ch3:0 ch2:0 ch1:0 ch0:66 previous-ch0:65
+Setting[D/A]:68   ch3:0 ch2:0 ch1:0 ch0:67 previous-ch0:66
+Setting[D/A]:69   ch3:0 ch2:0 ch1:0 ch0:68 previous-ch0:67
+Setting[D/A]:70   ch3:0 ch2:0 ch1:0 ch0:69 previous-ch0:68
+Setting[D/A]:71   ch3:0 ch2:0 ch1:0 ch0:70 previous-ch0:69
+Setting[D/A]:72   ch3:0 ch2:0 ch1:0 ch0:71 previous-ch0:70
+Setting[D/A]:73   ch3:0 ch2:0 ch1:0 ch0:72 previous-ch0:71
+Setting[D/A]:74   ch3:0 ch2:0 ch1:0 ch0:73 previous-ch0:72
+Setting[D/A]:75   ch3:0 ch2:0 ch1:0 ch0:74 previous-ch0:73
+Setting[D/A]:76   ch3:0 ch2:0 ch1:0 ch0:75 previous-ch0:74
+Setting[D/A]:77   ch3:0 ch2:0 ch1:0 ch0:76 previous-ch0:75
+Setting[D/A]:78   ch3:0 ch2:0 ch1:0 ch0:77 previous-ch0:76
+Setting[D/A]:79   ch3:0 ch2:0 ch1:0 ch0:78 previous-ch0:77
+Setting[D/A]:80   ch3:0 ch2:0 ch1:0 ch0:79 previous-ch0:78
+Setting[D/A]:81   ch3:0 ch2:0 ch1:0 ch0:80 previous-ch0:79
+Setting[D/A]:82   ch3:0 ch2:0 ch1:0 ch0:81 previous-ch0:80
+Setting[D/A]:83   ch3:0 ch2:0 ch1:0 ch0:82 previous-ch0:81
+Setting[D/A]:84   ch3:0 ch2:0 ch1:0 ch0:83 previous-ch0:82
+Setting[D/A]:85   ch3:0 ch2:0 ch1:0 ch0:84 previous-ch0:83
+Setting[D/A]:86   ch3:0 ch2:0 ch1:0 ch0:85 previous-ch0:84
+Setting[D/A]:87   ch3:0 ch2:0 ch1:0 ch0:86 previous-ch0:85
+Setting[D/A]:88   ch3:0 ch2:0 ch1:0 ch0:88 previous-ch0:86
+Setting[D/A]:89   ch3:0 ch2:0 ch1:0 ch0:88 previous-ch0:87
+Setting[D/A]:90   ch3:0 ch2:0 ch1:0 ch0:89 previous-ch0:88
+Setting[D/A]:91   ch3:0 ch2:0 ch1:0 ch0:90 previous-ch0:89
+Setting[D/A]:92   ch3:0 ch2:0 ch1:0 ch0:91 previous-ch0:90
+Setting[D/A]:93   ch3:0 ch2:0 ch1:0 ch0:92 previous-ch0:91
+Setting[D/A]:94   ch3:0 ch2:0 ch1:0 ch0:93 previous-ch0:92
+Setting[D/A]:95   ch3:0 ch2:0 ch1:0 ch0:94 previous-ch0:93
+Setting[D/A]:96   ch3:0 ch2:0 ch1:0 ch0:95 previous-ch0:94
+Setting[D/A]:97   ch3:0 ch2:0 ch1:0 ch0:96 previous-ch0:95
+Setting[D/A]:98   ch3:0 ch2:0 ch1:0 ch0:97 previous-ch0:96
+Setting[D/A]:99   ch3:0 ch2:0 ch1:0 ch0:98 previous-ch0:97
+Setting[D/A]:100   ch3:0 ch2:0 ch1:0 ch0:99 previous-ch0:98
+Setting[D/A]:101   ch3:0 ch2:0 ch1:0 ch0:100 previous-ch0:99
+Setting[D/A]:102   ch3:0 ch2:0 ch1:0 ch0:102 previous-ch0:100
+Setting[D/A]:103   ch3:0 ch2:0 ch1:0 ch0:103 previous-ch0:101
+Setting[D/A]:104   ch3:0 ch2:0 ch1:0 ch0:103 previous-ch0:102
+Setting[D/A]:105   ch3:0 ch2:0 ch1:0 ch0:104 previous-ch0:103
+Setting[D/A]:106   ch3:0 ch2:0 ch1:0 ch0:105 previous-ch0:104
+Setting[D/A]:107   ch3:0 ch2:0 ch1:0 ch0:107 previous-ch0:105
+Setting[D/A]:108   ch3:0 ch2:0 ch1:0 ch0:108 previous-ch0:106
+Setting[D/A]:109   ch3:0 ch2:0 ch1:0 ch0:108 previous-ch0:107
+Setting[D/A]:110   ch3:0 ch2:0 ch1:0 ch0:110 previous-ch0:108
+Setting[D/A]:111   ch3:0 ch2:0 ch1:0 ch0:110 previous-ch0:109
+Setting[D/A]:112   ch3:0 ch2:0 ch1:0 ch0:112 previous-ch0:110
+Setting[D/A]:113   ch3:0 ch2:0 ch1:0 ch0:112 previous-ch0:111
+Setting[D/A]:114   ch3:0 ch2:0 ch1:0 ch0:113 previous-ch0:112
+Setting[D/A]:115   ch3:0 ch2:0 ch1:0 ch0:115 previous-ch0:113
+Setting[D/A]:116   ch3:0 ch2:0 ch1:0 ch0:115 previous-ch0:114
+Setting[D/A]:117   ch3:0 ch2:0 ch1:0 ch0:116 previous-ch0:115
+Setting[D/A]:118   ch3:0 ch2:0 ch1:0 ch0:117 previous-ch0:116
+Setting[D/A]:119   ch3:0 ch2:0 ch1:0 ch0:119 previous-ch0:117
+Setting[D/A]:120   ch3:0 ch2:0 ch1:0 ch0:119 previous-ch0:118
+Setting[D/A]:121   ch3:0 ch2:0 ch1:0 ch0:120 previous-ch0:119
+Setting[D/A]:122   ch3:0 ch2:0 ch1:0 ch0:121 previous-ch0:120
+Setting[D/A]:123   ch3:0 ch2:0 ch1:0 ch0:123 previous-ch0:121
+Setting[D/A]:124   ch3:0 ch2:0 ch1:0 ch0:124 previous-ch0:122
+Setting[D/A]:125   ch3:0 ch2:0 ch1:0 ch0:124 previous-ch0:123
+Setting[D/A]:126   ch3:0 ch2:0 ch1:0 ch0:126 previous-ch0:124
+Setting[D/A]:127   ch3:0 ch2:0 ch1:0 ch0:127 previous-ch0:125
+Setting[D/A]:128   ch3:0 ch2:0 ch1:0 ch0:128 previous-ch0:126
+Setting[D/A]:129   ch3:0 ch2:0 ch1:0 ch0:128 previous-ch0:127
+Setting[D/A]:130   ch3:0 ch2:0 ch1:0 ch0:129 previous-ch0:128
+Setting[D/A]:131   ch3:0 ch2:0 ch1:0 ch0:131 previous-ch0:129
+Setting[D/A]:132   ch3:0 ch2:0 ch1:0 ch0:131 previous-ch0:130
+Setting[D/A]:133   ch3:0 ch2:0 ch1:0 ch0:132 previous-ch0:131
+Setting[D/A]:134   ch3:0 ch2:0 ch1:0 ch0:134 previous-ch0:132
+Setting[D/A]:135   ch3:0 ch2:0 ch1:0 ch0:134 previous-ch0:133
+Setting[D/A]:136   ch3:0 ch2:0 ch1:0 ch0:135 previous-ch0:134
+Setting[D/A]:137   ch3:0 ch2:0 ch1:0 ch0:136 previous-ch0:135
+Setting[D/A]:138   ch3:0 ch2:0 ch1:0 ch0:137 previous-ch0:136
+Setting[D/A]:139   ch3:0 ch2:0 ch1:0 ch0:139 previous-ch0:137
+Setting[D/A]:140   ch3:0 ch2:0 ch1:0 ch0:140 previous-ch0:138
+Setting[D/A]:141   ch3:0 ch2:0 ch1:0 ch0:140 previous-ch0:139
+Setting[D/A]:142   ch3:0 ch2:0 ch1:0 ch0:141 previous-ch0:140
+Setting[D/A]:143   ch3:0 ch2:0 ch1:0 ch0:143 previous-ch0:141
+Setting[D/A]:144   ch3:0 ch2:0 ch1:0 ch0:143 previous-ch0:142
+Setting[D/A]:145   ch3:0 ch2:0 ch1:0 ch0:144 previous-ch0:143
+Setting[D/A]:146   ch3:0 ch2:0 ch1:0 ch0:145 previous-ch0:144
+Setting[D/A]:147   ch3:0 ch2:0 ch1:0 ch0:147 previous-ch0:145
+Setting[D/A]:148   ch3:0 ch2:0 ch1:0 ch0:147 previous-ch0:146
+Setting[D/A]:149   ch3:0 ch2:0 ch1:0 ch0:148 previous-ch0:147
+Setting[D/A]:150   ch3:0 ch2:0 ch1:0 ch0:150 previous-ch0:148
+Setting[D/A]:151   ch3:0 ch2:0 ch1:0 ch0:151 previous-ch0:149
+Setting[D/A]:152   ch3:0 ch2:0 ch1:0 ch0:152 previous-ch0:150
+Setting[D/A]:153   ch3:0 ch2:0 ch1:0 ch0:152 previous-ch0:151
+Setting[D/A]:154   ch3:0 ch2:0 ch1:0 ch0:153 previous-ch0:152
+Setting[D/A]:155   ch3:0 ch2:0 ch1:0 ch0:153 previous-ch0:153
+Setting[D/A]:156   ch3:0 ch2:0 ch1:0 ch0:156 previous-ch0:154
+Setting[D/A]:157   ch3:0 ch2:0 ch1:0 ch0:156 previous-ch0:155
+Setting[D/A]:158   ch3:0 ch2:0 ch1:0 ch0:158 previous-ch0:156
+Setting[D/A]:159   ch3:0 ch2:0 ch1:0 ch0:159 previous-ch0:157
+Setting[D/A]:160   ch3:0 ch2:0 ch1:0 ch0:159 previous-ch0:158
+Setting[D/A]:161   ch3:0 ch2:0 ch1:0 ch0:160 previous-ch0:159
+Setting[D/A]:162   ch3:0 ch2:0 ch1:0 ch0:160 previous-ch0:159
+Setting[D/A]:163   ch3:0 ch2:0 ch1:0 ch0:163 previous-ch0:161
+Setting[D/A]:164   ch3:0 ch2:0 ch1:0 ch0:163 previous-ch0:162
+Setting[D/A]:165   ch3:0 ch2:0 ch1:0 ch0:164 previous-ch0:163
+Setting[D/A]:166   ch3:0 ch2:0 ch1:0 ch0:164 previous-ch0:164
+Setting[D/A]:167   ch3:0 ch2:0 ch1:0 ch0:167 previous-ch0:165
+Setting[D/A]:168   ch3:0 ch2:0 ch1:0 ch0:167 previous-ch0:166
+Setting[D/A]:169   ch3:0 ch2:0 ch1:0 ch0:167 previous-ch0:167
+Setting[D/A]:170   ch3:0 ch2:0 ch1:0 ch0:169 previous-ch0:168
+Setting[D/A]:171   ch3:0 ch2:0 ch1:0 ch0:169 previous-ch0:169
+Setting[D/A]:172   ch3:0 ch2:0 ch1:0 ch0:172 previous-ch0:170
+Setting[D/A]:173   ch3:0 ch2:0 ch1:0 ch0:172 previous-ch0:171
+Setting[D/A]:174   ch3:0 ch2:0 ch1:0 ch0:174 previous-ch0:172
+Setting[D/A]:175   ch3:0 ch2:0 ch1:0 ch0:174 previous-ch0:173
+Setting[D/A]:176   ch3:0 ch2:0 ch1:0 ch0:176 previous-ch0:174
+Setting[D/A]:177   ch3:0 ch2:0 ch1:0 ch0:176 previous-ch0:175
+Setting[D/A]:178   ch3:0 ch2:0 ch1:0 ch0:177 previous-ch0:176
+Setting[D/A]:179   ch3:0 ch2:0 ch1:0 ch0:179 previous-ch0:177
+Setting[D/A]:180   ch3:0 ch2:0 ch1:0 ch0:179 previous-ch0:178
+Setting[D/A]:181   ch3:0 ch2:0 ch1:0 ch0:180 previous-ch0:179
+Setting[D/A]:182   ch3:0 ch2:0 ch1:0 ch0:180 previous-ch0:180
+Setting[D/A]:183   ch3:0 ch2:0 ch1:0 ch0:183 previous-ch0:181
+Setting[D/A]:184   ch3:0 ch2:0 ch1:0 ch0:183 previous-ch0:182
+Setting[D/A]:185   ch3:0 ch2:0 ch1:0 ch0:184 previous-ch0:183
+Setting[D/A]:186   ch3:0 ch2:0 ch1:0 ch0:185 previous-ch0:184
+Setting[D/A]:187   ch3:0 ch2:0 ch1:0 ch0:187 previous-ch0:185
+Setting[D/A]:188   ch3:0 ch2:0 ch1:0 ch0:187 previous-ch0:186
+Setting[D/A]:189   ch3:0 ch2:0 ch1:0 ch0:188 previous-ch0:187
+Setting[D/A]:190   ch3:0 ch2:0 ch1:0 ch0:190 previous-ch0:188
+Setting[D/A]:191   ch3:0 ch2:0 ch1:0 ch0:191 previous-ch0:189
+Setting[D/A]:192   ch3:0 ch2:0 ch1:0 ch0:192 previous-ch0:190
+Setting[D/A]:193   ch3:0 ch2:0 ch1:0 ch0:192 previous-ch0:191
+Setting[D/A]:194   ch3:0 ch2:0 ch1:0 ch0:193 previous-ch0:192
+Setting[D/A]:195   ch3:0 ch2:0 ch1:0 ch0:193 previous-ch0:193
+Setting[D/A]:196   ch3:0 ch2:0 ch1:0 ch0:195 previous-ch0:194
+Setting[D/A]:197   ch3:0 ch2:0 ch1:0 ch0:196 previous-ch0:195
+Setting[D/A]:198   ch3:0 ch2:0 ch1:0 ch0:196 previous-ch0:196
+Setting[D/A]:199   ch3:0 ch2:0 ch1:0 ch0:199 previous-ch0:197
+Setting[D/A]:200   ch3:0 ch2:0 ch1:0 ch0:199 previous-ch0:198
+Setting[D/A]:201   ch3:0 ch2:0 ch1:0 ch0:200 previous-ch0:199
+Setting[D/A]:202   ch3:0 ch2:0 ch1:0 ch0:201 previous-ch0:200
+Setting[D/A]:203   ch3:0 ch2:0 ch1:0 ch0:202 previous-ch0:201
+Setting[D/A]:204   ch3:0 ch2:0 ch1:0 ch0:204 previous-ch0:202
+Setting[D/A]:205   ch3:0 ch2:0 ch1:0 ch0:204 previous-ch0:203
+Setting[D/A]:206   ch3:0 ch2:0 ch1:0 ch0:206 previous-ch0:204
+Setting[D/A]:207   ch3:0 ch2:0 ch1:0 ch0:206 previous-ch0:205
+Setting[D/A]:208   ch3:0 ch2:0 ch1:0 ch0:207 previous-ch0:206
+Setting[D/A]:209   ch3:0 ch2:0 ch1:0 ch0:208 previous-ch0:207
+Setting[D/A]:210   ch3:0 ch2:0 ch1:0 ch0:209 previous-ch0:208
+Setting[D/A]:211   ch3:0 ch2:0 ch1:0 ch0:209 previous-ch0:209
+Setting[D/A]:212   ch3:0 ch2:0 ch1:0 ch0:211 previous-ch0:210
+Setting[D/A]:213   ch3:0 ch2:0 ch1:0 ch0:212 previous-ch0:211
+Setting[D/A]:214   ch3:0 ch2:0 ch1:0 ch0:213 previous-ch0:212
+Setting[D/A]:215   ch3:0 ch2:0 ch1:0 ch0:215 previous-ch0:213
+Setting[D/A]:216   ch3:0 ch2:0 ch1:0 ch0:216 previous-ch0:214
+Setting[D/A]:217   ch3:0 ch2:0 ch1:0 ch0:216 previous-ch0:215
+Setting[D/A]:218   ch3:0 ch2:0 ch1:0 ch0:217 previous-ch0:216
+Setting[D/A]:219   ch3:0 ch2:0 ch1:0 ch0:219 previous-ch0:217
+Setting[D/A]:220   ch3:0 ch2:0 ch1:0 ch0:220 previous-ch0:218
+Setting[D/A]:221   ch3:0 ch2:0 ch1:0 ch0:220 previous-ch0:219
+Setting[D/A]:222   ch3:0 ch2:0 ch1:0 ch0:220 previous-ch0:220
+Setting[D/A]:223   ch3:0 ch2:0 ch1:0 ch0:223 previous-ch0:221
+Setting[D/A]:224   ch3:0 ch2:0 ch1:0 ch0:224 previous-ch0:222
+Setting[D/A]:225   ch3:0 ch2:0 ch1:0 ch0:224 previous-ch0:223
+Setting[D/A]:226   ch3:0 ch2:0 ch1:0 ch0:225 previous-ch0:224
+Setting[D/A]:227   ch3:0 ch2:0 ch1:0 ch0:227 previous-ch0:225
+Setting[D/A]:228   ch3:0 ch2:0 ch1:0 ch0:227 previous-ch0:226
+Setting[D/A]:229   ch3:0 ch2:0 ch1:0 ch0:228 previous-ch0:227
+Setting[D/A]:230   ch3:0 ch2:0 ch1:0 ch0:230 previous-ch0:228
+Setting[D/A]:231   ch3:0 ch2:0 ch1:0 ch0:230 previous-ch0:229
+Setting[D/A]:232   ch3:0 ch2:0 ch1:0 ch0:231 previous-ch0:230
+Setting[D/A]:233   ch3:0 ch2:0 ch1:0 ch0:232 previous-ch0:231
+Setting[D/A]:234   ch3:0 ch2:0 ch1:0 ch0:233 previous-ch0:232
+Setting[D/A]:235   ch3:0 ch2:0 ch1:0 ch0:235 previous-ch0:233
+Setting[D/A]:236   ch3:0 ch2:0 ch1:0 ch0:235 previous-ch0:234
+Setting[D/A]:237   ch3:0 ch2:0 ch1:0 ch0:236 previous-ch0:235
+Setting[D/A]:238   ch3:0 ch2:0 ch1:0 ch0:238 previous-ch0:236
+Setting[D/A]:239   ch3:0 ch2:0 ch1:0 ch0:238 previous-ch0:237
+Setting[D/A]:240   ch3:0 ch2:0 ch1:0 ch0:240 previous-ch0:238
+Setting[D/A]:241   ch3:0 ch2:0 ch1:0 ch0:240 previous-ch0:239
+Setting[D/A]:242   ch3:0 ch2:0 ch1:0 ch0:241 previous-ch0:240
+Setting[D/A]:243   ch3:0 ch2:0 ch1:0 ch0:242 previous-ch0:241
+Setting[D/A]:244   ch3:0 ch2:0 ch1:0 ch0:243 previous-ch0:242
+Setting[D/A]:245   ch3:0 ch2:0 ch1:0 ch0:244 previous-ch0:243
+Setting[D/A]:246   ch3:0 ch2:0 ch1:0 ch0:246 previous-ch0:244
+Setting[D/A]:247   ch3:0 ch2:0 ch1:0 ch0:246 previous-ch0:245
+Setting[D/A]:248   ch3:0 ch2:0 ch1:0 ch0:247 previous-ch0:246
+Setting[D/A]:249   ch3:0 ch2:0 ch1:0 ch0:248 previous-ch0:247
+Setting[D/A]:250   ch3:0 ch2:0 ch1:0 ch0:248 previous-ch0:248
+Setting[D/A]:251   ch3:0 ch2:0 ch1:0 ch0:250 previous-ch0:249
+Setting[D/A]:252   ch3:0 ch2:0 ch1:0 ch0:251 previous-ch0:250
+Setting[D/A]:253   ch3:0 ch2:0 ch1:0 ch0:252 previous-ch0:251
+Setting[D/A]:254   ch3:0 ch2:0 ch1:0 ch0:253 previous-ch0:252
+Setting[D/A]:255   ch3:0 ch2:0 ch1:0 ch0:254 previous-ch0:253
+Prop0 Cog6 ok
+
+
+
+         3V3
+          |
+AIN1---- VR(10kohm)center
+          |
+         GND
+AIN2-----GND
+demo2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+13
+20
+27
+33
+39
+44
+49
+54
+56
+59
+60
+62
+64
+67
+70
+74
+77
+80
+84
+88
+92
+96
+100
+105
+110
+115
+118
+123
+126
+127
+127
+127
+127
+127
+127
+127
+127
+127
+127
+127
+127
+127
+127
+127
+Prop0 Cog6 ok
+
+AIN1-----GND
+         3V3
+          |
+AIN2---- VR(10kohm)center
+          |
+         GND
+demo2
+demo2
+0
+0
+0
+0
+0
+0
+-8
+-18
+-29
+-41
+-50
+-58
+-65
+-71
+-79
+-85
+-91
+-96
+-101
+-106
+-112
+-116
+-122
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+-128
+Prop0 Cog6 ok
