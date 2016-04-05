@@ -1,5 +1,5 @@
 Prop0 Cog6 ok
-JoyStick
+JoyStick_demo
 X       Y
 131     128
 131     128
