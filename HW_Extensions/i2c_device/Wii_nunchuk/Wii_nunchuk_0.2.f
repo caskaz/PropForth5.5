@@ -30,8 +30,8 @@ SDA(Green)  --------- P29
 SCL(Yellow) --------- P28
 
 ==== CAUTION ===========================================================================
-This doesn't use i2c_utility_0.4.1.f, because _eestar inside it cause I2C-error.
-Device inside Wii-nunchuk cannot treat _eestar(assembler-word).
+This doesn't use i2c_utility_0.4.1.f, because _eestart inside it cause I2C-error.
+Device inside Wii-nunchuk cannot operate _eestart(assembler-word).
 So, it is Forth-word on this code.    
 ========================================================================================
 }
