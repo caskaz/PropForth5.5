@@ -83,7 +83,7 @@ decimal
 : 7Seg_out 7SEG + C@ outa COG@ or outa COG! ;
  
 {
-Display touched sensor-pad to 7Segment-LED
+Display touched sensor-pad to 7Segment-LED(GL-8R04:Cathode common)
 
 Touchpad on Board surface
  ----------------------
