@@ -84,6 +84,15 @@ decimal
  
 {
 Display touched sensor-pad to 7Segment-LED(GL-8R04:Cathode common)
+Prop     GL-8R04
+P0-------a[1]
+P1-------b[13]
+P2-------c[10]
+P3-------d[8]
+P4-------e[7]
+P5-------f[2]
+P6-------g12]
+GND------COM
 
 Touchpad on Board surface
  ----------------------
