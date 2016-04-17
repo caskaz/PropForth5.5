@@ -1,0 +1,65 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- 03 -- -- -- -- -- -- -- -- -- -- -- -- <-- PCA9624PW reply
+10: 10 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- PCA9624PW
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: 70 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- PCA9624PW reply
+i2c_device:3
+[0 - 7] and [h78 - h7F] are reserve-address
+
+PCA9624 reply h03[SoftwareReset] and h70[ALLCALLADR].
+reserve-address don't count i2c-device.
+h70 isn't reserve-address.
+So i2c-devices are 7pcs. Actually 3pcs.
+
+Prop0 Cog6 ok
+
+
+Prop0 Cog6 ok        [Default below;]
+rd_allreg
+MODE1:          h11
+MODE2:          h5
+PWM0:           h0
+PWM1:           h0
+PWM2:           h0
+PWM3:           h0
+PWM4:           h0
+PWM5:           h0
+PWM6:           h0
+PWM7:           h0
+GRPPWM:         hFF
+GRPFREQ:        h0
+LEDOUT0:        h0
+LEDOUT1:        h0
+SUBADR1:        hE2
+SUBADR2:        hE4
+SUBADR3:        hE8
+ALLCALLADR:     hE0
+
+Prop0 Cog6 ok
+rd_allreg_rev
+ALLCALLADR:     hE0
+SUBADR3:        hE8
+SUBADR2:        hE4
+SUBADR1:        hE2
+LEDOUT1:        h0
+LEDOUT0:        h0
+GRPFREQ:        h0
+GRPPWM:         hFF
+PWM7:           h0
+PWM6:           h0
+PWM5:           h0
+PWM4:           h0
+PWM3:           h0
+PWM2:           h0
+PWM1:           h0
+PWM0:           h0
+MODE2:          h5
+MODE1:          h91
+
+Prop0 Cog6 ok
