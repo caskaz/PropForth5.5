@@ -1,0 +1,31 @@
+ADT7410		16bit Temperature Sensor
+BH1750FVI	16bit Ambient Light Sensor
+BMP180		Pressure Sensor
+S11059-02DT	ColorSensor
+DRV8830		Motor Driver
+DS1337		Real Time Clock
+DS3231		Real Time Clock
+GP2Y0E03	Distance Measuring Sensor
+HMC5883L	3-axis digital compass
+HT16k33		Ram Mapping 16X8 LED Controller Driver with keyscan
+INA226		Bi-Directional Current and Power Monitor
+L3GD20		3-axis Gyroscope 
+LM75BD		Temperature Sensor
+LPS25H		Pressure Sensor
+MCP23017	6bit I/O Expander
+MCP3425		6bit Analog to Digital Converter
+MCP4725		12bit Digital to Analog Converter
+MLX90614ESF-BAA	IR Temperature sensor
+MPU6050		3-axis-jyro/3-axis-accelerometer
+PCA9546		4channel Bus Switch
+PCA9624		LED driver
+PCA9632		LED driver
+PCAL9554BPW	8bit I/O Expander
+PFC2129		Real Time Clock
+PFC85263	RealTimeClock
+PCF8574		8bit I/O Expande
+PCF8591		A/D D/A Converter
+RH6010		TouchSensor
+STTS751-0WB3F	Temperature Sensor
+ST7032i		I2C characterLCD
+
