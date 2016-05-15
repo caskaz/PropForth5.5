@@ -27,5 +27,8 @@ PCF8574		8bit I/O Expande
 PCF8591		A/D D/A Converter
 RH6010		TouchSensor
 STTS751-0WB3F	Temperature Sensor
+Wii-nunchuk
+AT24C512	eeprom
+24LC1025	eeprom
 ST7032i		I2C characterLCD
 
