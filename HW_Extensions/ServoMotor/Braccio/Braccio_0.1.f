@@ -252,6 +252,7 @@ begin rot_wrist at_target until
 begin gripper at_target until
 ;
 
+\ https://youtu.be/JL5h1zzt0RA
 : test
 servo_init 
 demo1 wait demo2 wait demo3 wait demo2 
