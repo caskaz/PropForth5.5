@@ -4,6 +4,7 @@ BMP180		Pressure Sensor
 S11059-02DT	ColorSensor
 DRV8830		Motor Driver
 DS1337		Real Time Clock
+DS1631		Thermometer and Thermostat
 DS3231		Real Time Clock
 GP2Y0E03	Distance Measuring Sensor
 HMC5883L	3-axis digital compass
