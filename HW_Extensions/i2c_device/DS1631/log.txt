@@ -1,0 +1,83 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 -- -- -- -- -- -- -- <-- DS1631
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+Prop0 Cog6 ok    <-- After power-up(default status)
+disp_reg
+Temperature:    C400    -60 .0000
+Temp-High:      0F00    15 .0000
+Temp-Low:       0A00    10 .0000
+Configuration:  8C
+
+
+
+-- Set Th to 20.7500degree
+Prop0 Cog6 ok
+h14C0 wr_TH
+
+Prop0 Cog6 ok
+disp_reg
+Temperature:    C400    -60 .0000
+Temp-High:      14C0    20 .7500
+Temp-Low:       0A00    10 .0000
+Configuration:  8C
+
+
+
+Prop0 Cog6 ok
+measure
+Temp            TH              TL              TempFlag
+28 .9375degree  30 .0000degree  10 .0000degree  0
+28 .8125degree  30 .0000degree  10 .0000degree  0
+28 .8125degree  30 .0000degree  10 .0000degree  0
+28 .8750degree  30 .0000degree  10 .0000degree  0
+28 .8750degree  30 .0000degree  10 .0000degree  0
+28 .8125degree  30 .0000degree  10 .0000degree  0
+28 .8750degree  30 .0000degree  10 .0000degree  0
+28 .8750degree  30 .0000degree  10 .0000degree  0
+29 .0000degree  30 .0000degree  10 .0000degree  0
+29 .1875degree  30 .0000degree  10 .0000degree  0
+29 .5000degree  30 .0000degree  10 .0000degree  0
+29 .6250degree  30 .0000degree  10 .0000degree  0
+29 .7500degree  30 .0000degree  10 .0000degree  0
+29 .8125degree  30 .0000degree  10 .0000degree  0
+30 .0000degree  30 .0000degree  10 .0000degree  2 <-- Thermostat Output pin goes down to 0V
+30 .0625degree  30 .0000degree  10 .0000degree  2
+30 .1250degree  30 .0000degree  10 .0000degree  2
+30 .2500degree  30 .0000degree  10 .0000degree  2
+30 .3125degree  30 .0000degree  10 .0000degree  2
+
+Temp:           TH              TL              TempFlag
+30 .3750degree  30 .0000degree  10 .0000degree  2
+30 .4375degree  30 .0000degree  10 .0000degree  2
+
+Prop0 Cog6 ok
+
+disp_reg
+Temperature:    1E60    30 .3750degree
+Temp-High:      1E00    30 .0000degree
+Temp-Low:       0A00    10 .0000degree
+Configuration:  CC
+Prop0 Cog6 ok
+reset
+I2C error   <---- I2C error occured
+Prop0 Cog6 ok
+disp_reg
+Temperature:    C400    -60 .0000degree  <-- Back to default value
+Temp-High:      1E00    30 .0000degree
+Temp-Low:       0A00    10 .0000degree
+Configuration:  8C
+Prop0 Cog6 ok
+
+DS1631 seems to be back NACK against POR-command[h54].
+But DS1631 is reset.
+ 
