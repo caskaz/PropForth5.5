@@ -1,0 +1,68 @@
+                                                                          Prop0 Cog6 ok
+Prop0 Cog6 ok
+demo2
+27 .50 degreeC
+27 .50 degreeC
+27 .75 degreeC
+28 .0 degreeC
+28 .25 degreeC  <--- Touched Thermocouple sensor by finger
+28 .0 degreeC
+28 .0 degreeC
+28 .0 degreeC
+28 .25 degreeC
+28 .0 degreeC
+27 .75 degreeC
+28 .0 degreeC
+28 .25 degreeC
+31 .50 degreeC
+33 .50 degreeC
+34 .50 degreeC
+35 .50 degreeC
+35 .25 degreeC
+35 .75 degreeC
+36 .25 degreeC
+36 .50 degreeC
+36 .25 degreeC
+36 .0 degreeC
+35 .75 degreeC
+35 .25 degreeC
+35 .0 degreeC
+34 .50 degreeC
+34 .25 degreeC
+33 .75 degreeC
+33 .75 degreeC
+33 .50 degreeC
+33 .0 degreeC
+32 .75 degreeC
+32 .75 degreeC
+32 .75 degreeC
+32 .25 degreeC
+32 .25 degreeC
+31 .75 degreeC
+31 .75 degreeC
+sensor open error  <---- Removed Thermocouple sensor
+sensor open error
+sensor open error
+sensor open error
+sensor open error
+sensor open error
+sensor open error
+518 .75 degreeC    <--- Connecred Thermocouple sensor
+sensor open error    /\ Unstable
+533 .75 degreeC      |  Unstable
+558 .50 degreeC      |  Unstable
+452 .25 degreeC      \/ Unstable
+31 .0 degreeC       Stable
+31 .50 degreeC
+30 .75 degreeC
+30 .0 degreeC
+30 .50 degreeC
+29 .50 degreeC
+29 .75 degreeC
+30 .25 degreeC
+30 .0 degreeC
+29 .75 degreeC
+29 .50 degreeC
+30 .0 degreeC
+29 .75 degreeC
+Prop0 Cog6 ok
