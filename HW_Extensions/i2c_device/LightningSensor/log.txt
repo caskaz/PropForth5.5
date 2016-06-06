@@ -1,0 +1,61 @@
+
+[code]
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: 00 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- AS3935
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:1
+[0 - 7] and [h78 - h7F] are reserve-address
+
+Prop0 Cog6 ok
+rd_allreg
+
+register number[hex]:value[hex]
+
+00:24  01:22  02:C2  03:00  04:00  05:00  06:00  07:3F
+08:00  09:AD  0A:00  0B:25  0C:03  0D:01  0E:22  0F:83
+10:01  11:1F  12:43  13:02  14:1B  15:63  16:03  17:18
+18:14  19:05  1A:14  1B:9D  1C:07  1D:11  1E:6A  1F:0B
+20:0E  21:1D  22:11  23:0C  24:AB  25:19  26:0A  27:7F
+28:26  29:08  2A:BD  2B:39  2C:06  2D:9B  2E:56  2F:05
+30:E7  31:81  32:01  33:88  34:42  35:00  36:3F  37:00
+38:70  39:0C  3A:1D  3B:1A  3C:00  3D:00
+
+Prop0 Cog6 ok
+demo
+
+CAP= 0  frequency=508240
+CAP= 1  frequency=506544
+CAP= 2  frequency=504848
+CAP= 3  frequency=503168
+CAP= 4  frequency=501520
+CAP= 5  frequency=499888
+CAP= 6  frequency=498256
+CAP= 7  frequency=496672
+CAP= 8  frequency=495008
+CAP= 9  frequency=493440
+CAP= 10  frequency=491888
+CAP= 11  frequency=490352
+CAP= 12  frequency=488816
+CAP= 13  frequency=487312
+CAP= 14  frequency=485824
+CAP= 15  frequency=484352
+SetFrequency:499888 Hz Capacitance:40 pF
+TRCO ok 33383 Hz
+SRCO ok 1261392 Hz
+
+Noise level too high
+Disturb detected
+Disturb detected
+Disturb detected
+Disturb detected
+Disturb detected
+Disturb detected
+Disturb detected
