@@ -13,6 +13,7 @@ INA226		Bi-Directional Current and Power Monitor
 L3GD20		3-axis Gyroscope 
 LM75BD		Temperature Sensor
 LPS25H		Pressure Sensor
+AS3935		Ligtning Sensor
 MCP23017	16bit I/O Expander
 MCP3425		16bit Analog to Digital Converter
 MCP4725		12bit Digital to Analog Converter
