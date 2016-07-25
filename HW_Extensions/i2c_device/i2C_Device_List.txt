@@ -28,6 +28,7 @@ PFC85263	RealTimeClock
 PCF8574		8bit I/O Expande
 PCF8591		A/D D/A Converter
 RH6010		TouchSensor
+SSD1306		OLED LCD Controller
 STTS751-0WB3F	Temperature Sensor
 Wii-nunchuk
 AT24C512	eeprom
