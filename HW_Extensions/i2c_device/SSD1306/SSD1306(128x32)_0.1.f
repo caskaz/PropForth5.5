@@ -5,7 +5,7 @@ PropForth 5.5(DevKernel)
 
 128x32dots OLED LCD Controller SSD1306
 Using i2c_utility_0.4.2.f   
-2016/07/25 11:57:25
+2016/08/11 8:58:24
 
 OLED display(128X32)   Propeller
            VDD    ----  3.3V
@@ -216,6 +216,20 @@ _eewrite or              \ ( n1 t/f )
 or                       \ ( t/f )
 ;
 
+\ Adjust contrast [default:h7F]
+\ ( n1 -- ) n1:contrast value[1-255]
+: contrast 
+\ Start I2C 
+_eestart
+\ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
+OLED _eewrite            \ ( n1 t/f )
+h81 command              \ ( n1 t/f )
+swap command             \ ( t/f )
+\ Stop I2C
+_eestop 
+err?
+;
+
 \ Initialize SSD1306 on vertical addressing mode
 \ ( -- )
 : init_oled
@@ -241,16 +255,15 @@ dup disp_mode W!
 _eestart
 \ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
 OLED _eewrite            \ ( n1 t/f )
+h20 command              \ Memory Addressing Mode
 swap                     \ ( t/f n1 )
 1 =               
 if                       \ ( t/f )
      \ Horizontal
-     h20 command         \ Memory Addressing Mode 
      h00 command         \    Horizontal Addressing Mode
                          \ ( t/f )
 else      
      \ Vertical
-     h20 command         \ Memory Addressing Mode 
      h01 command         \    Vertical Addressing Mode
                          \ ( t/f )
 then
@@ -503,82 +516,117 @@ _eestop
 err?
 ;
 
-\ Display 8x8Fonts without vram
+\ Horizontal Scrolling 
 \ ( -- )
-: demo1
-init_oled
-clr_mem
-hrz set_mode        \ Horizontal mode
+: scroll_H                              
+\ Start I2C 
 _eestart
 \ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
-OLED _eewrite                                         
-1 controlbyte or
-Font
-\ 96 characters
-d96 0 do
-     \ 1 character
-     8 0 do
-          dup
-          C@ _eewrite rot or swap
-          1+
-     loop
-     d100 delms
-loop
-drop
+OLED _eewrite            \ ( n1 t/f )
+  
+h26 command              \ Scroll to right
+0 command
+0 command
+0 command
+3 command
+0 command
+hFF command
+h2F command              \ Activate scroll
+d4000 delms
+
+h2E command              \ Deactivate scroll
+h27 command              \ Scroll to left
+0 command
+0 command
+0 command
+3 command
+0 command
+hFF command
+h2F command              \ Activate scroll           
+d4000 delms
+h2E command              \ Deactivate scroll 
 \ Stop I2C
 _eestop 
 err?
 ;
 
-\ Display 8x8Fonts
-\ ( -- )
-: demo2
-init_oled
-hrz set_mode        \ Horizontal mode
-clr_vram            \ Clear vram
-disp_OLED_LCD       \ Copy vram to GDDRAM
+\ Vertical and Horizontal Scrolling
+\ ( -- ) 
+: scroll_VH                              
+\ Start I2C 
+_eestart
+\ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
+OLED _eewrite            \ ( n1 t/f )
 
-0 vidX W! 0 vidY W!
-d15 max_vidX W!
-\ 96 characters
-h20
-d96 0 do
-     dup     
-     print               \ Print character
-     1+                  \ Increment character code
-     disp_OLED_LCD
-loop
-drop
-c" PropForth5.5    " lcd_string
-disp_OLED_LCD
-disp_reverse
-d3000 delms
-disp_normal
+hA3 command              \ Set Vertical Scroll Area
+0 command                
+d32 command 
+
+h29 command              \ Vertical and Right Horizontal scroll
+0 command
+0 command                \ Page0
+1 command
+3 command                \ Page3
+1 command                \ Vertical Scrolling offset
+h2F command              \ Activate scroll
+d5000 delms
+h2E command              \ Deactivate scroll
+
+h2A command              \ Vertical and Right Horizontal scroll
+0 command
+0 command                \ Page0
+0 command                \ Vertical Scrolling offset
+3 command                \ Page3
+1 command
+h2F command              \ Activate scroll
+d5400 delms
+h2E command              \ Deactivate scroll
+
+\ Stop I2C
+_eestop 
+err?
 ;
 
-\ Display PropROM Fonts
-\ ( -- )
-: demo3
-init_oled
-vrt set_mode        \ Horizontal mode
-clr_vram            \ Clear vram
-disp_OLED_LCD       \ Copy vram to GDDRAM
+\ FadeOut
+\ ( n1 -- )  n1:interval time[0-15]
+: FadeOut
+\ Start I2C 
+_eestart
+\ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
+OLED _eewrite            \ ( n1 t/f )
 
-7 max_vidX W!
-0 vidX W! 
-\ 512 characters
-h20
-d256 0 do
-     dup     
-     print               \ Print character
-     1+                  \ Increment character code
-     disp_OLED_LCD
-loop
-drop
-clr_vram 0 vidX W! 
-c" Forth" lcd_string
-disp_OLED_LCD
-disp_reverse
-d3000 delms
-disp_normal
+h23 command              \ ( n1 t/f )
+swap h20 or command      \ ( t/f )
+\ Stop I2C
+_eestop 
+err?
+;
+
+\ Blinking
+\ ( n1 -- )  n1:interval time[0-15]
+: Blink
+\ Start I2C 
+_eestart
+\ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
+OLED _eewrite            \ ( n1 t/f )
+
+h23 command              \ ( n1 t/f )
+swap h30 or command      \ ( t/f )
+\ Stop I2C
+_eestop 
+err?
+;
+
+\ Disable FadeOut/Blinking
+\ ( -- )
+: dis_Fade/Blink
+\ Start I2C 
+_eestart
+\ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
+OLED _eewrite            \ ( t/f )
+h23 command              \ ( t/f )
+0 command                \ ( t/f )
+\ Stop I2C
+_eestop 
+err?
 ;
