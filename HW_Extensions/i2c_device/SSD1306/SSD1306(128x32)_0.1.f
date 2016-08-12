@@ -9,8 +9,7 @@ Using i2c_utility_0.4.2.f
 
 OLED display(128X32)   Propeller
            VDD    ----  3.3V
-           GND    ----  GND
-           RES    ----  P4      
+           GND    ----  GND   
            SCL    ----  P28   
            SDA    ----  P29   
 }
