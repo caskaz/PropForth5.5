@@ -1,0 +1,60 @@
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 -- -- -- -- -- -- -- <-- PCT2075
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+
+Prop0 Cog6 ok
+
+hex
+Prop0 Cog6 ok
+GetConf .
+0 Prop0 Cog6 ok
+OS_f2 setOS_queue
+Prop0 Cog6 ok
+GetConf .
+8 Prop0 Cog6 ok
+decimal
+Prop0 Cog6 ok
+
+31 0 SetTos    <-- Set Tos to 31degree
+Prop0 Cog6 ok
+Tos getThyst/Tos Tos/Thyst <-- Print Tos register
+31 .0 degree
+Prop0 Cog6 ok
+
+5 setTidle     <-- set sampling period to 500msec
+Prop0 Cog6 ok
+getTidle .
+Prop0 Cog6 ok
+5 Prop0 Cog6 ok
+
+
+Prop0 Cog6 ok
+demo1
+30 .125 degree
+30 .250 degree
+30 .500 degree
+30 .875 degree
+31 .125 degree  <--- LED is on
+31 .375 degree
+31 .625 degree
+31 .750 degree
+31 .625 degree
+31 .500 degree
+31 .375 degree
+31 .250 degree
+31 .125 degree
+31 .125 degree
+31 .0 degree
+31 .0 degree
+30 .875 degree  <-- LED is off
+Prop0 Cog6 ok
