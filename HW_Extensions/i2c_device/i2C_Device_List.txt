@@ -27,6 +27,7 @@ PFC2129		Real Time Clock
 PFC85263	RealTimeClock
 PCF8574		8bit I/O Expande
 PCF8591		A/D D/A Converter
+PCT2075		Temperature Sensor
 RH6010		TouchSensor
 SSD1306		OLED LCD Controller
 STTS751-0WB3F	Temperature Sensor
