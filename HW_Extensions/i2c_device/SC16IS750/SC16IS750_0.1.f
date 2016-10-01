@@ -4,7 +4,8 @@ fl
 Single UART (SC16IS750IPW)
       
 PropForth 5.5
-2016/10/01 13:40:31   
+Using i2c_utility_0.4.2.f
+2016/10/01 15:33:26   
 
 2016/09/30 15:07:34
 
