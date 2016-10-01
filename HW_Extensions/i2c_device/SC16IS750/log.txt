@@ -1,0 +1,56 @@
+
+Prop0 Cog6 ok
+i2c_detect
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- 4C -- -- -- <-- h4C:SC16IS750
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- <-- h50:eeprom
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+i2c_device:2
+
+Prop0 Cog6 ok
+
+rd_allreg
+
+RHR/THR:h2B
+IER:h0
+IIR/FCR:h1
+LCR:h1D
+MCR:h0
+LSR:h6F
+MSR/TCR:h0
+SPR/TLR:h21
+TXLVL:h40
+RXLVL:h1
+IODir:h0
+IOState:hFF
+IOIntEna:h0
+IOControl:h0
+EFCR:h0
+
+Prop0 Cog6 ok
+hex
+Prop0 Cog6 ok
+
+----------- GPIO test -----------------------------------------
+hAA GPIO
+bit7    bit6    bit5    bit4    bit3    bit2    bit1    bit0
+OUT     IN      OUT     IN      OUT     IN      OUT     IN
+Prop0 Cog6 ok
+Prop0 Cog6 ok
+0 wrGPIO rdGPIO . cr
+55
+Prop0 Cog6 ok
+h88 wrGPIO rdGPIO . cr
+DD
+Prop0 Cog6 ok
+
+c" May the Forth be with you." test   <---- transmit
+
+May the Forth be with you.            <---- receive
+
+Prop0 Cog6 ok
