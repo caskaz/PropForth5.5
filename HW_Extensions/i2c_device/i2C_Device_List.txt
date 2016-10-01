@@ -29,6 +29,7 @@ PCF8574		8bit I/O Expande
 PCF8591		A/D D/A Converter
 PCT2075		Temperature Sensor
 RH6010		TouchSensor
+SC16IS750	Single UART
 SSD1306		OLED LCD Controller
 STTS751-0WB3F	Temperature Sensor
 Wii-nunchuk
