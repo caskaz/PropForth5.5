@@ -23,6 +23,7 @@ PCA9546		4channel Bus Switch
 PCA9624		LED driver
 PCA9632		LED driver
 PCAL9554BPW	8bit I/O Expander
+PCAL9555BPW	16bit I/O Expander
 PFC2129		Real Time Clock
 PFC85263	RealTimeClock
 PCF8574		8bit I/O Expande
