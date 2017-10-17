@@ -1,0 +1,542 @@
+
+================================================================================
+ADC(MPC3204)
+================================================================================
+
+A/D conversion by MCP3204 single-mode CH0
+( n1 -- n2 )  n1:mcs(top pin cpnnected to MCP3204)  n4:ADC value
+$C_treg1:working
+$C_treg2:delay counter
+
+
+fl
+build_BootOpt :rasm
+          \ Get cs/Din/Dout/CLK mask
+          mov       __cs , $C_stTOS 
+          shl       $C_stTOS , # 1
+          mov       __do , $C_stTOS
+          shl       $C_stTOS , # 1
+          mov       __di , $C_stTOS
+          shl       $C_stTOS , # 1
+          mov       __clk , $C_stTOS
+          
+          \ send control bit[5bit] to MCP3204
+          mov       $C_stTOS , __controlBit     
+          mov       $C_treg2 , # 5
+          \ set cs to Lo
+          andn      outa ,  __cs
+__1
+          shl       $C_stTOS , # 1 wc
+          \ set do to Hi/Lo
+          muxc      outa , __do
+          \ out clk-pulse              
+          jmpret    __clkout_ret , # __clkout
+          djnz      $C_treg2 , # __1
+          
+          \ set do to Lo
+          andn      outa , __do
+          \ dummy clock
+          jmpret    __clkout_ret , # __clkout      
+
+          \ receive data
+          mov       $C_treg2 , # d13
+__2
+          shl       $C_stTOS , # 1
+          \ clock out
+          jmpret    __clkout_ret , # __clkout
+          test      __di , ina wz
+if_nz     add       $C_stTOS , # 1
+          djnz      $C_treg2 , # __2
+                         
+          \ Set clk to Lo
+          andn      outa , __clk 
+          \ Set cs to Hi
+          or        outa , __cs
+          jexit          
+
+__clkout
+          andn      outa , __clk 
+          \ 24ticks from [mov $C_treg2 , # d11] to [waitcnt $C_treg2 , # 0]
+          mov       $C_treg1 , # d11
+          add       $C_treg1 , cnt
+          waitcnt   $C_treg1 , # 0          
+          or        outa , __clk
+          nop
+__clkout_ret
+ret
+
+__cs
+     0
+__do
+     0
+__di
+     0
+__clk
+     0
+__controlBit
+     hC0000000
+     
+;asm a_ADC
+
+
+================================================================================
+LCD(ST7735)
+================================================================================
+
+\ Write 1 byte to LCD
+\ ( n1 n2 -- )  n:1byte data   n2:mSDA
+fl
+build_BootOpt :rasm
+     mov       __sda , $C_stTOS
+     shl       $C_stTOS , # 1
+     mov       __scl , $C_stTOS
+     spop
+     mov       $C_treg1 , # 8
+     shl       $C_stTOS , # d24
+__1
+     \ hi bit to the carry flag
+     rcl       $C_stTOS , # 1 wc
+     \ set data out accordingly
+     muxc      outa , __sda
+     \ toggle clock
+     or        outa , __scl
+     andn      outa , __scl
+     \ loop
+     djnz      $C_treg1 , # __1
+     
+     andn	     outa , __sda
+     spop
+     jexit
+          
+__sda     
+ 0
+__scl
+ 0
+;asm a_byteWr		
+
+
+
+\ Shift LCD-dots to left dot by dot[1dot=10msec]
+\ ( n1 n2 -- )  n1:buffer address  n2:mSDA
+Main
+__buffer  ADC value array address [128byte]
+$C_treg1  Time axis[LCD colulmn]
+__counter loop-counter for LCD column
+$C_treg2  ADC axis[LCD row]
+$C_treg3  color data
+
+__movePos routine
+$C_treg1  data from  Main
+$C_treg2  data from  Main
+$C_treg4  data to __serout
+
+__plotDot routine
+$C_treg3  data from  Main
+$C_treg4  data to __serout
+
+__serout routine
+$C_treg5  loop-counter
+$C_treg4  sending data
+
+
+fl
+build_BootOpt :rasm
+     mov       __sda , $C_stTOS
+     shl       $C_stTOS , # 1
+     mov       __scl , $C_stTOS
+     shr       $C_stTOS , # 2
+     mov       __d/cx , $C_stTOS
+     spop
+     mov       __buffer , $C_stTOS
+     spop
+     
+     \ initial time(x:column),counter
+     mov       $C_treg1 , # d129
+     mov       __counter , # d127
+__1
+     \ Get A/D level[n](y:LCD row)
+     rdbyte    $C_treg2 , __buffer
+     jmpret    __movePos_ret , # __movePos
+     \ Erace dot(black)
+     mov       $C_treg3 , __black
+     jmpret    __plotDot_ret , # __plotDot
+     \ Get A/D level(n+1)
+     add       __buffer , # 1
+     rdbyte    $C_treg2 , __buffer
+     sub       __buffer , # 1
+     \ Move data from buffer(n+1) to buffer(n)
+     wrbyte    $C_treg2 , __buffer
+     \           
+     jmpret    __movePos_ret , # __movePos
+     \ Draw dot(white)
+     mov       $C_treg3 , __white
+     jmpret    __plotDot_ret , # __plotDot
+
+     add       __buffer , # 1
+     sub       $C_treg1 , # 1
+     djnz      __counter , # __1 
+     
+     \ Erace dot of right edge 
+     mov       $C_treg1 , # 2
+     rdbyte    $C_treg2 , __buffer
+     jmpret    __movePos_ret , # __movePos
+     \ Erace dot(black)
+     mov       $C_treg3 , __black
+     jmpret    __plotDot_ret , # __plotDot
+     
+     jexit
+     
+__serout
+     mov       $C_treg5 , # 8
+     shl       $C_treg4 , # d24
+__2
+     rcl       $C_treg4 , # 1 wc
+     muxc      outa , __sda
+     \ Toggle clk
+     or        outa , __scl
+     andn      outa , __scl
+     djnz      $C_treg5 , # __2     
+__serout_ret
+     ret       
+
+     
+__movePos
+\ Set __d/cx to Low  (command-mode)
+     andn      outa , __d/cx
+     \ Write command [column address (h2A)]
+     mov       $C_treg4 , # h2A            
+     jmpret    __serout_ret , # __serout
+     \ Set __d/cx to High  (data-mode)
+     or        outa , __d/cx
+\ Write data
+     mov       $C_treg4 , # 0             
+     jmpret    __serout_ret , # __serout        
+     mov       $C_treg4 , $C_treg1          
+     jmpret    __serout_ret , # __serout
+             
+\ Set __d/cx to Low  (command-mode)
+     andn      outa , __d/cx
+     \ Write command [row address (h2B)]
+     mov       $C_treg4 , # h2B            
+     jmpret    __serout_ret , # __serout
+\ Set __d/cx to High  (data-mode)
+     or        outa , __d/cx
+     \ Write data
+     mov       $C_treg4 , # 0             
+     jmpret    __serout_ret , # __serout        
+     mov       $C_treg4 , $C_treg2          
+     jmpret    __serout_ret , # __serout
+__movePos_ret
+     ret     
+
+__plotDot
+\ Set __d/cx to Low  (command-mode)
+     andn      outa , __d/cx
+     \ Write command [memory write (h2C)]
+     mov       $C_treg4 , # h2C            
+     jmpret    __serout_ret , # __serout
+     \ Set __d/cx to High  (data-mode)
+     or        outa , __d/cx
+\ Write data
+     mov       $C_treg4 , $C_treg3              
+     jmpret    __serout_ret , # __serout        
+     jmpret    __serout_ret , # __serout
+
+__plotDot_ret
+     ret
+     
+
+__sda     
+ 0
+__scl
+ 0
+__d/cx
+ 0
+__buffer
+ 0
+__counter
+ 0
+__black
+ 0
+__white
+ hFF
+  
+;asm a_dotShift		
+
+
+{
+n         2byte:update timr[0-500]
+m         2byte:index for Digit-display
+mSDA      4byte:mask of sda
+font addr 2byte:Address for font table
+Digit3    2byte:char-code for Digit3
+Digit2    2byte:char-code for Digit2
+Digit1    2byte:char-code for Digit1
+}
+variable varNum -4 allot
+0 l, mSDA l, font w, 0 w, 0 w, 0 w,
+\ ( n1 n2 -- )   n1:pulseValue address n2:varNum address
+fl
+build_BootOpt :rasm
+     \ Check n=200(2seconds)
+          rdword    $C_treg1 , $C_stTOS
+          cmp       $C_treg1 , # d200 wz
+if_nz     jmp       # __update_n
+
+     \ Get mask for LCD-terminal
+          mov       $C_treg1 , $C_stTOS          
+          add       $C_stTOS , # 4
+          rdlong    $C_treg2 , $C_stTOS
+          mov       __sda , $C_treg2
+          shl       $C_treg2 , # 1
+          mov       __scl , $C_treg2
+          shl       $C_treg2 , # 1
+          mov       __csx , $C_treg2
+          shr       $C_treg2 , # 3
+          mov       __d/cx , $C_treg2
+     \ Get address 
+          mov       __n , $C_treg1
+          add       $C_treg1 , # 2
+          mov       __m , $C_treg1   
+          add       $C_treg1 , # 6
+          rdword    __fontAddr , $C_treg1
+          add       $C_treg1 , # 2
+          mov       __Digit3 , $C_treg1
+          add       $C_treg1 , # 2
+          mov       __Digit2 , $C_treg1
+          add       $C_treg1 , # 2
+          mov       __Digit1 , $C_treg1
+          spop          
+          mov       __pulseValue , $C_stTOS
+          
+     \ Check [m]
+          rdword    $C_treg2 , __m wz
+if_nz     jmp       # __digit3
+     \ Get pulseValue
+          rdword    $C_treg1 , __pulseValue
+     \ Calculate pulsecode 
+     \ Get 1**
+          mov       $C_treg2 , # 0
+__100
+          cmp       $C_treg1 , # d100 wc 
+if_nc     add       $C_treg2 , # 1
+if_nc     sub       $C_treg1 , # d100 
+if_nc     jmp       # __100
+          test      $C_treg2 , # hFF wz
+if_z      mov       $C_treg2 , # d10
+          wrword    $C_treg2 , __Digit3
+     \ Get 1*
+     
+          mov       $C_treg2 , # 0
+__10
+          cmp       $C_treg1 , # d10 wc 
+if_nc     add       $C_treg2 , # 1
+if_nc     sub       $C_treg1 , # d10 
+if_nc     jmp       # __10
+          wrword    $C_treg2 , __Digit2
+     \ Get 1
+          wrword    $C_treg1 , __Digit1
+
+          mov       $C_treg1 , # 3
+          wrword    $C_treg1 , __m          
+          jmp       # __END
+          
+__digit3
+          cmp       $C_treg2 , # 3 wz
+if_nz     jmp       # __digit2          
+     \ Display digit3
+          rdword    $C_treg1 , __Digit3
+          mov       __x , # d114
+          jmpret    __dispNumber_ret , # __dispNumber
+          
+          mov       $C_treg1 , # 2
+          wrword    $C_treg1 , __m          
+          jmp       # __END
+
+__digit2
+          cmp       $C_treg2 , # 2 wz
+if_nz     jmp       # __digit1          
+     \ Display digit2 
+          rdword    $C_treg1 , __Digit2
+          mov       __x , # d98
+          jmpret    __dispNumber_ret , # __dispNumber
+
+          mov       $C_treg1 , # 1
+          wrword    $C_treg1 , __m         
+          jmp       # __END
+__digit1
+     \ Display digit1 
+          rdword    $C_treg1 , __Digit1
+          mov       __x , # d82
+          jmpret    __dispNumber_ret , # __dispNumber
+
+     \ Clear [n][m]
+          mov       $C_treg1 , # 0
+          wrlong    $C_treg1 , __n
+          jmp       # __END
+
+__update_n
+     add       $C_treg1 , # 1
+     wrword    $C_treg1 , $C_stTOS
+     spop
+__END
+     spop
+     jexit
+
+
+
+__dispNumber
+          add       $C_treg1 , # 0 wz
+if_z      jmp       # __1
+__2
+          add       __fontAddr , # d44
+          djnz      $C_treg1 , # __2
+__1
+
+     \ Set csx to Lo
+     andn      outa , __csx
+     
+     \ Set column and row
+          mov       $C_treg1 , # h2A
+          jmpret    __command_ret , # __command
+          mov       $C_treg2 , # 0
+          mov       $C_treg3 , __x 
+          jmpret    __data_ret , # __data
+          mov       $C_treg2 , # 0 
+          add       $C_treg3 , # d15
+          jmpret    __data_ret , # __data
+          
+          mov       $C_treg1 , # h2B
+          jmpret    __command_ret , # __command
+          mov       $C_treg2 , # 0
+          mov       $C_treg3 , # d134 
+          jmpret    __data_ret , # __data
+          mov       $C_treg2 , # 0 
+          mov       $C_treg3 , # d155
+          jmpret    __data_ret , # __data
+
+     \ Draw number
+          mov       $C_treg1 , # h2C
+          jmpret    __command_ret , # __command
+          mov       __loop1 , # d22
+__3    
+          mov       __loop2 , # d16
+          rdword    __value , __fontAddr
+__4     
+          rcr       __value , # 1 wc
+if_nc     jmpret    __nodot_ret , # __nodot
+if_c      jmpret    __dot_ret , # __dot     
+          djnz      __loop2 , # __4
+          add       __fontAddr , # 2
+          djnz      __loop1 , # __3
+      
+          \ Set csx to Hi
+          or        outa , __csx
+__dispNumber_ret
+          ret
+     
+     
+__serout
+     mov       $C_treg5 , # 8
+     shl       $C_treg4 , # d24
+__5
+     rcl       $C_treg4 , # 1 wc
+     muxc      outa , __sda
+     \ Toggle clk
+     or        outa , __scl
+     andn      outa , __scl
+     djnz      $C_treg5 , # __5     
+__serout_ret
+     ret       
+
+
+__command
+\ Set __d/cx to Low  (command-mode)
+     andn      outa , __d/cx
+     \ Write command 
+     mov       $C_treg4 , $C_treg1           
+     jmpret    __serout_ret , # __serout
+     \ Set __d/cx to High  (data-mode)
+     or        outa , __d/cx
+__command_ret
+     ret   
+     
+__data
+\ Write data
+     mov       $C_treg4 , $C_treg2           
+     jmpret    __serout_ret , # __serout        
+     mov       $C_treg4 , $C_treg3           
+     jmpret    __serout_ret , # __serout
+__data_ret
+     ret   
+       
+__nodot
+     mov       $C_treg4 , # 0           
+     jmpret    __serout_ret , # __serout        
+     mov       $C_treg4 , # 0            
+     jmpret    __serout_ret , # __serout
+__nodot_ret
+     ret
+     
+__dot     
+     mov       $C_treg4 , __green_h          
+     jmpret    __serout_ret , # __serout        
+     mov       $C_treg4 , __green_l           
+     jmpret    __serout_ret , # __serout
+__dot_ret
+     ret
+
+
+
+\ address     
+__n
+ 0
+__m
+ 0
+__pulseValue
+ 0
+__fontAddr
+ 0
+__Digit3
+ 0 
+__Digit2
+ 0 
+__Digit1
+ 0 
+
+\ mask
+__sda     
+ 0
+__scl
+ 0
+__csx
+  0
+__d/cx
+ 0
+ 
+\ variable
+__loop1
+ 0
+__loop2
+  0
+  
+\ constant
+__value
+ 0
+__green_h
+ 7
+__green_l
+ hE0
+__x
+ 0
+  
+;asm a_dispDigits
+		
+: test1 cnt COG@ pulseValue varNum a_dispDigits cnt COG@ swap - . ;
+
+: test 
+96 pulseValue W!
+0 varNum L!
+d500 varNum W!
+test1
+;
