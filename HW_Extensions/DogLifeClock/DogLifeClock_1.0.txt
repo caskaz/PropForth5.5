@@ -1,0 +1,748 @@
+fl
+
+{
+Dog Life Clock #1
+      
+PropForth 5.5
+2018/02/12 12:23:21
+
+-------LCD---------------------------------------
+          LM4049(controller:HD66732)
+            Vss  --- GND     GND
+            Vdd  --- 3V3       |
+Propeller   Vo   ------------VR(10kohm)
+   P0 ----- RS                |
+   P1 ----- RW                |
+   P2 ----- E                 |
+   P3 ----- DB0               |
+   P4 ----- DB1               |
+   P5 ----- DB2               |
+   P6 ----- DB3               |
+   P7 ----- DB4               |
+   P8 ----- DB5               |
+   P9 ----- DB6               |
+   P10 ---- DB7               |
+            NC                |
+   P11 ---- RESET             |
+            VEE  -------------          
+            LED+ --- 3V3
+            LED- --- GND
+
+-------rtc---------------------------------------
+              DS3231
+           -----------
+P28 ------|SCL    Vcc |----3V3
+P29 ------|SDA        |   +       -
+          |       VBAT|----battery----GND
+          |        GND|----GND
+           -----------
+           
+-------LED---------------------------------------
+P12 ----220ohm----P N-----GND
+     LED-blinking indicate 1second for Dog.
+
+-------short-pin---------------------------------------
+              3V3
+               |
+              10kohm
+               |
+P13 -----------|
+               |---
+               X     Shortt-pin is removed when dog is dead.
+               |--- And only name,birthday,deadday and livingdays on LCD at power-on.
+              GND
+
+Dog life(Shiba-inu) Human terms    Dog Time/Human Time
+0month              0year          82msec/1sec
+1month              1year          41msec/1sec
+2months             3years         41msec/1sec
+3months             5years         50msec/1sec
+6months             10years        50msec/1sec
+1year               20years        250msec/1sec
+2years              24years        same as above
+3years              28years        same as above
+4years              32years        same as above
+5years              36years        same as above
+6years              40years        same as above
+7years              44years        same as above
+8years              48years        same as above
+9years              52years        same as above
+10years             56years        same as above
+11years             58years        same as above
+12years             62years        same as above
+13years             68years        same as above
+14years             72years        same as above
+15years             76years        same as above
+16years             80years        same as above
+17years             84years        same as above
+18years             88years        same as above
+
+}
+: DLT ;
+\ =========================================================================== 
+\ Constants 
+\ =========================================================================== 
+\ -----LCD-----
+\ LM4049
+0 wconstant RS
+1 wconstant RW
+2 wconstant E
+3 wconstant DB0
+d11 wconstant RST
+hFF DB0 lshift invert constant DBm  
+d12 wconstant LED
+d13 wconstant pin
+
+\ -----rtc-----
+\ Slave addres h68 for DS3231
+hD0 wconstant DS3231
+
+wvariable BirthDay -2 allot
+d2004 w, 1 w, 2 w,
+
+wvariable month -2 allot
+d31 c, d28 c, d31 c, d30 c, d31 c, d30 c, d31 c, d31 c, d30 c, d31 c, d30 c, d31 c, 
+\ livingDay year multiple
+wvariable ageList -2 allot
+d180 c, d20 c,
+d90 c, d20 c,
+d60 c, d24 c,
+d30 c, d24 c,
+0 c, d12 c,
+
+\ =========================================================================== 
+\ Variables 
+\ =========================================================================== 
+wvariable livingDay
+wvariable tmp
+wvariable flag
+wvariable check
+wvariable blink
+wvariable pulse
+
+\ =========================================================================== 
+\ LM4049
+\ =========================================================================== 
+\ case statemenr
+\ ( n1 n2 -- n1 t/f )  return true if n1=n2
+: case over = ;
+
+\ Write mode
+\ ( -- )
+: wrMode RW pinlo ;
+
+\ Read mode
+\ ( -- )
+: rdMode RW pinhi ;
+
+\ Set register/data/command to DataBus
+\ ( n1 -- ) n1:register/data/command
+: setDB E pinhi DB0 lshift outa COG@ DBm and or outa COG! E pinlo ;
+
+\ Set register
+\ ( n1 -- ) n1:register
+: setReg RS pinlo setDB ;
+
+\ Set command or data
+\ ( n1 -- ) n1:command or data
+: setCom RS pinhi setDB ;
+
+\ Write command
+\ ( n1 n2 -- ) n1:command n2:register
+: wrCom setReg setCom ;
+
+\ Clear display
+\ Clear character RAM(DDRAM) AdressCounter=0 I/D=1
+\ ( -- )
+: clrScr 1 0 wrCom ;
+
+\ Set auto-increment on character RAM
+\ ( -- )
+: autoInc 9 7 wrCom ;
+
+\ Stop auto-increment on character RAM
+\ ( -- )
+: stopInc hB 7 wrCom ;
+
+\ Set address on character RAM (DDRAM adress[0-h13,h20-h33,h40-h53,h60-h73])
+\ ( n1 n2 -- ) n1:x[1-20] n2:y[1-4]
+: charPos
+0 hD wrCom                                   \ Write DDRAM upper address 
+1- h20 * + 1-
+hE wrCom                                     \ Write DDRAM lower address
+;
+     
+\ Initialize LM40449 LCD
+\ ( -- )
+: init
+RS d13 0 do dup pinout 1+ loop drop          \ Set port to output
+RST pinhi RST pinlo d10 delms RST pinhi      \ Reset LCD( OSC start, DDRAM clear[all hA0] )
+1 1 wrCom                                    \ Start OSC
+d20 delms
+wrMode                                     \ Set write-mode                                          
+h42 2 wrCom                                  \ 4charcter line, 1/52 duty, scan-direction
+0 3 wrCom                                    \ Selection for LCD drive-wave
+h1F 4 wrCom                                  \ 1/8bias, max contrast
+
+hB0 5 wrCom                                 \ Voltage follower curcuit on, triple boost (power=3V3)
+\ h90 5 wrCom                                  \ Voltage follower curcuit on, triple boost  (power=5V)
+clrScr
+autoInc                                      \ entry mode[super impose, character mode, auto increment]
+1 1 charPos                                  \ Set DDRAM address
+8 8 wrCom                                    \ cursol off, address-counter reset
+h22 9 wrCom                                  \ Display on, 10digits
+;
+
+\ Get HD66732 character code from JIS code(2byte)
+\ ( n1 n2 -- n3 ) n1:JIS upper byte code[7bits] n2:JIS lower byte code[7bits]  n3:char_code[13bits]
+: KanjiCode
+over dup 4 rshift            
+2 case                                  
+if
+     drop
+     \ Non Kanji
+     7 and 7 lshift swap                     \ Convert JIS upper byte code
+     dup h1F and swap h60 and 5 lshift or    \ Convert JIS lower byte code
+     or
+else
+     3 case                                
+     if
+          drop
+          \ JIS Level1 Kanji 1st
+          dup 6 rshift 4 lshift swap hF and or 7 lshift     \ Convert JIS upper byte code
+          or              
+     else
+          4 case                                            
+          if                                                    
+               drop                                                  
+               \ JIS Level1 Kanji 2nd
+               dup 6 rshift 4 lshift swap hF and or 7 lshift     \ Convert JIS upper byte code
+               or              
+          else
+               5 case
+               if
+                    drop
+                    \ JIS Level2 Kanji 1st
+                    dup 5 rshift 4 lshift swap hF and or 7 lshift     \ Convert JIS upper byte code
+                    or
+               else
+                    6 case
+                    if
+                         drop
+                         \ JIS Level1 Kanji 2nd
+                         dup 5 rshift 4 lshift swap hF and or    \ Convert JIS upper byte code
+                         or
+                    else
+                         drop
+                         \ JIS Level1 Kanji 3rd
+                         7 and 7 lshift swap                     \ Convert JIS upper byte code
+                         dup h1F and swap h60 and 5 lshift or    \ Convert JIS lower byte code
+                         or
+thens               
+nip
+;
+
+\ Print Full size character on DDRAM
+\ ( n1 -- ) n1:JIS-code  
+: FCGROM
+dup 8 rshift swap hFF and KanjiCode
+dup 
+hFF and hF wrCom              \ Write lower byte
+8 rshift                      \ Full size char: msb=0
+\ FCpropaty W@ 5 lshift or      \ Add property
+hF wrCom                      \ Write upper byte
+;
+
+\ Print half size character on DDRAM
+\ ( n1 -- ) n1:character code[7bits]
+: HCGROM h80 or hF wrCom ;              
+
+\ Print 7bit character to DDRAM
+\ ( n1 -- ) n1:7bit character code
+: HC_str C@++ bounds do i C@ HCGROM loop ;
+
+\ Initial display
+\ ( -- )
+: initMSG
+h245E FCGROM h2424 FCGROM               \ ‚Ü‚¢
+h216A FCGROM                            \ female-mark
+9 1 charPos h2F HCGROM 
+d12 1 charPos h2F HCGROM
+d18 1 charPos h3A HCGROM
+1 2 charPos
+h4A3F FCGROM h402E FCGROM               \ •½¬ 
+h2331 FCGROM h2336 FCGROM h472F FCGROM  \ ‚P‚U”N
+h2331 FCGROM h376E FCGROM               \ ‚PŒŽ
+h2332 FCGROM h467C FCGROM h4038 FCGROM  \ ‚Q“ú¶
+1 3 charPos
+h472F FCGROM h4E70 FCGROM               \ ”N—î
+d11 3 charPos
+h3A50 FCGROM h213F FCGROM               \ Î^ 
+d17 3 charPos h2E HCGROM
+d19 3 charPos 
+h3A50 FCGROM                            \ Î
+\ d11 3 charPos h213F FCGROM              \ ^
+1 4 charPos
+h4038 FCGROM h4238 FCGROM h467C FCGROM h3F74 FCGROM    \ ¶‘¶“ú”
+d19 4 charPos h467C FCGROM              \ “ú
+;
+
+\ Print Full-size number
+\ ( n1 -- )  n1:number
+: prtFC h2330 + FCGROM ;
+
+
+\ =========================================================================== 
+\ DS3231
+\ =========================================================================== 
+: err_msg ." I2C error" ;
+\ If error, print message
+\ ( n1 -- )   n1:t/f
+: err? if err_msg cr then ;
+
+\ Start i2c-commnication 
+\ This also can use SMBus device.
+\ ( -- )
+lockdict create _eestart forthentry
+$C_a_lxasm w, h122  h113  1- tuck - h9 lshift or here W@ alignl h10 lshift or l,
+z1[ixnW l, z1[ixnX l, z2WyP[U l, z20iPak l, z3ryPW0 l, z1bixnW l, z2WyP[V l, z20iPak l,
+z3ryPW0 l, z1bixnX l, z1SV01X l, zl0 l, zCW l, zW0000 l, zG0000 l,
+freedict
+
+\ Re-defined RepeatedStart
+\ ( -- )
+: Sr _eestart ;
+
+\ Stop i2c-commnication 
+\ ( -- )
+: _eestop
+_scli     \ Release scl 
+_sdai     \ Release sda
+;
+
+\ _eewrite ( c1 -- t/f ) write c1 to the eeprom, true if there was an error
+\ Received acknowledge from i2c-device during scl is high
+\ scl/sda use pull-up resistor at hi
+\ clock:400kHz
+lockdict create _eewrite forthentry
+$C_a_lxasm w, h12C  h113  1- tuck - h9 lshift or here W@ alignl h10 lshift or l,
+z2WyPW8 l, z1YVPQ0 l, z1rixnd l, z1Sy\C] l, z1[ixne l, z1Sy\C] l, z1bixne l, zfyPO1 l,
+z3[yP[K l, z1[ixnd l, z1Sy\C] l, z1[ixne l, z1Sy\C] l, z1YF\Nl l, z1viPR6 l, z1bixne l,
+z1Sy\C] l, z1bixnd l, z1SV01X l, z2WyPc7 l, z20iPik l, z3ryPb0 l, z1SV000 l, zW0000 l,
+zG0000 l,
+freedict
+
+\ _eeread ( t/f -- c1 ) flag should be true is this is the last read
+\ scl/sda use pull-up resistor at hi
+\ clock:400kHz
+lockdict create _eeread forthentry
+$C_a_lxasm w, h12D  h113  1- tuck - h9 lshift or here W@ alignl h10 lshift or l,
+z2WiPZB l, z2WyPO0 l, z1[ixne l, z2WyPj8 l, z1Sy\Ka l, z1[ixnf l, z1Sy\Ka l, z1XF\Vl l,
+znyPO1 l, z1bixnf l, z3[yPnN l, z26VPW0 l, z1rixne l, z1Sy\Ka l, z1[ixnf l, z1Sy\Ka l,
+z1bixnf l, z1bixne l, z1Sy\Ka l, z1SV01X l, z2WyPc9 l, z20iPik l, z3ryPb0 l, z1SV000 l,
+zW0000 l, zG0000 l,
+freedict
+
+
+\ Write series data to register in i2c_device
+\ ( n1..nn n2 n3 n4 -- )   n1..nn:data  n2:number  n3:register  n4:slave_address  
+: i2c_wr_multi
+\ Start I2C 
+_eestart
+\ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi) 
+_eewrite                                \ ( n1..nn n2 n3 t/f )
+\ Write register                   
+swap _eewrite or                        \ ( n1..nn n2 t/f )
+swap                                    \ ( n1..nn t/f n2 )
+\ Read n2 byte
+dup 1 >
+if                                      \ ( n1..nn t/f n2 )                 
+     0 do                               \ ( n1..nn t/f )
+          swap _eewrite or              \ ( n1.. nn t/f ) 
+     loop
+else                                    \ ( n1 t/f n2 )     
+     drop swap _eewrite or              \ ( t/f )
+then               
+\ Stop I2C
+_eestop 
+err?                                    \ ( -- )
+;
+
+\ Read data from register in i2c_device
+\ ( n1 n2 -- n3 )  n1:register  n2:slave_address  n3:data 
+: i2c_rd
+\ Start I2C 
+_eestart
+\ Write slave address[wr], then receive Acknowledge-bit(ACK:Lo  NACK:Hi)   
+tuck _eewrite                 \ ( n2 n1 t/f )
+\ Write register
+swap _eewrite or              \ ( n2 t/f )
+swap                          \ ( t/f n2 )
+\ Start read_process
+Sr
+\ Write slave address[rd], then receive Acknowledge-bit(ACK:Lo  NACK:Hi)
+1 or _eewrite or              \ ( t/f )
+\ Read 1byte ,then set sda to Hi(NACK:master->slave)
+-1 _eeread             
+\ Stop I2C
+_eestop                                         
+swap                         \ (n3 t/f )
+err?                         \ ( n3 )
+;
+
+\ bcd> ( n1 -- n2 ) convert bcd byte n1 to hex byte n2
+: bcd>
+	dup hF and
+	swap hF0 and
+	1 rshift dup
+	2 rshift + +
+;
+
+\ >bcd ( n1 -- n2 ) convert hex byte n1 to bcd byte n2
+: >bcd d10 u/mod 4 lshift + ;
+
+\ Get current time 
+\ Read/Convert current time from DS3231
+\ ( -- n1 n2 n3 n4 n5 n6 n7 )
+\ n1 - second		(00 - 59)
+\ n2 - minute		(00 - 59)
+\ n3 - hour		(00 - 23)
+\ n4 - day of week 	(Mon:1 Tue:2 Wed:3 Thur:4 Fri:5 Sat:6 San:7)
+\ n5 - date		(01 - 31)
+\ n6 - month		(01 - 12)
+\ n7 - year		(2000 - 2099)   
+: rdTime
+7 0 do 0 i + DS3231 i2c_rd bcd> loop  
+d2000 +                  
+;
+
+\ Set current-time to DS3231   (24Hour mode)
+\ Set second to 0
+\ ( n1 n2 n3 n4 n5 n6 -- ) 
+\ n1 - year		(2000 - 2099)   
+\ n2 - month		(01 - 12)
+\ n3 - date		(01 - 31)
+\ n4 - day-of-week  (Mon:1 Tue:2 Wed:3 Thur:4 Fri:5 Sat:6 San:7)
+\ n5 - hour		(00 - 23)
+\ n6 - minute		(00 - 59)
+: setTime 
+>bcd >r                       \ minute
+>bcd >r                       \ hour
+>r                            \ day-of-week
+>bcd >r                       \ day
+>bcd >r                       \ month
+d2000 - >bcd                  \ year
+r> r> r> r> r> 0     
+7 0 DS3231 i2c_wr_multi
+;
+
+\ Print Half character
+\ ( n1 -- ) n1:2digit number
+: prtHC d10 u/mod h30 + HCGROM h30 + HCGROM ;
+
+\ Print cuurent time
+\ ( -- )
+: prtTime
+rdTime
+7 1 charPos d2000 - prtHC             \ year
+d10 1 charPos prtHC           \ month
+d13 1 charPos prtHC           \ date
+drop                          \ drop week-day
+2dup
+d16 1 charPos prtHC           \ hour
+d19 1 charPos prtHC           \ minute
+\ Update living days
+0= swap 0= and flag W!        \ 00:00
+drop                          \ drop second
+;
+
+\ Print living-days
+\ ( n1 -- )  n1:living-days
+: prtLivingDay
+d11 4 charPos
+d1000 u/mod dup 0 >
+if
+     h2330 + FCGROM 
+     d100 u/mod prtFC  
+     d10 u/mod prtFC   
+     prtFC                     
+else
+     d13 4 charPos  
+     drop d100 u/mod dup 0 >
+     if
+          prtFC
+          d10 u/mod prtFC   
+          prtFC
+     else
+          d15 4 charPos 
+          drop d10 u/mod dup 0 >
+          if
+               prtFC    
+               prtFC
+          else
+               d17 4 charPos 
+               drop prtFC
+thens
+;
+
+\ Print DeathDay
+\ ( n1 n2 n3 n4 -- )  n1:livingDay n2:Day n3:Month n4:Year
+: prtDeath
+h245E FCGROM h2424 FCGROM                              \ ‚Ü‚¢
+h216A FCGROM                                           \ female-mark
+1 2 charPos
+h4A3F FCGROM h402E FCGROM                              \ •½¬ 
+h2331 FCGROM h2336 FCGROM h472F FCGROM                 \ ‚P‚U”N
+h2331 FCGROM h376E FCGROM                              \ ‚PŒŽ
+h2332 FCGROM h467C FCGROM h4038 FCGROM                 \ ‚Q“ú¶
+1 3 charPos
+h4A3F FCGROM h402E FCGROM                              \ •½¬ 
+d1988 - prtHC h472F FCGROM                             \ **”N
+9 3 charPos prtHC d11 3 charPos h376E FCGROM         \ **ŒŽ
+d13 3 charPos prtHC h467C FCGROM h4B57 FCGROM           \ **“ú–v
+1 4 charPos
+h4038 FCGROM h4238 FCGROM h467C FCGROM h3F74 FCGROM    \ ¶‘¶“ú”
+prtLivingDay                                           \ livingDay
+d19 4 charPos h467C FCGROM                             \ “ú
+;
+
+\ =========================================================================== 
+\ Main 
+\ =========================================================================== 
+\ Check leap
+\ ( n1 -- n2 )  n1:year  n2:1[leap] 0[normal]
+: leap?
+4 u/mod drop 0=
+if 1 else 0 then
+;
+
+\ Get year/month/day
+\ ( -- n1 n2 n3 )  n1:day n2:month n3:year
+: getYMD
+rdTime >r >r >r                              \ Push year month day
+3drop drop                                   \ Drop weekday hour minute second
+r> r> r>                                     \ Pop year month day
+;
+
+\ Get BirthDay-month
+\ ( -- n1 )  n1:0(Jan),1(Feb),2(Mar),3(Apr),4(May),5(Jun),6(Jul),7(Aug),8(Sep),9(Oct),10(Nov),11(Dec)
+: getBirthMonth BirthDay 2+ W@ 1- ;
+
+\ Calculate livingDay  
+\ ( -- )
+: calcLivingDay
+\ First year
+BirthDay W@ leap? if d366 else d365 then     \ 1year
+     \ Get total-day from Jan/1 to 1month ago of birthday
+getBirthMonth                                \ Ignore if Jan
+if
+     month 
+     getBirthMonth 0 do 
+          dup i + C@ livingDay W+! 
+          i 1 = 
+          if                                  
+               BirthDay W@ leap?             \ leap?
+               if 1 livingDay W+!             
+          thens      
+     loop 
+     drop
+then
+     \ Get day from start to 1day ago for birthday month
+BirthDay 4 + W@ 1- livingDay W+!              
+livingDay W@ - livingDay W!                                               
+
+getYMD dup BirthDay W@ =                     \ ( Day Month Year 1/0 )
+if
+     \ In case of same year[Birthday year=cuttent year]
+     0 tmp W!                                \ Clear tmp
+     drop 1- month d12                       \ ( Day Month-1 month 12 )
+     rot do                                  \ Get total day from this month to December
+          dup i + C@ tmp W+!                 \ ( Day month )
+          i 1 = 
+          if                                  
+               BirthDay W@ leap?             \ leap?
+               if 1 tmp W+!             
+          thens      
+     loop 
+     drop                                    \ ( day )
+     tmp W@ swap -                           \ Get day from tomorrow to 12/31
+     livingDay W@ swap - livingDay W!                                       
+else
+     \ In case of different year[Birthday year<>cuttent year]   
+          \ From 2year to 1 year ago          ( Day Month Year )
+     dup dup                                 \ ( Day Month Year Year Year )
+     \ Get total day from BirthDay's next year to 1 year ago
+     BirthDay W@ - 1- d365 *                                         
+     livingDay W@ + livingDay W!                                      
+     \ Get leap                                                         
+     BirthDay W@ - BirthDay W@ 1+ swap bounds do
+          i leap? if 1 livingDay W+! then                          
+     loop                                    \ ( Day Month Year )      
+                                                                       
+          \ Check if this year is leap
+     leap? tmp W!                            \ ( Day Month )
+          \ Get day from Jan/1 to 1month ago of this year
+                                                                         
+     1- dup 0>                               \ ( Day Month-1 1/0 )
+     if
+          month swap 0 do     
+               dup i + C@ livingDay W+!      
+               i 1 =                              \ Check if Feb 
+               if                                  
+                    tmp W@ 
+                    if 1 livingDay W+!            
+               thens                         \ ( Day month )
+          loop
+     then 
+     drop                                    \ ( Day )
+     livingDay W+!                           \ Add day                           
+then
+;
+
+\ Update age
+\ ( -- )
+: updateAge
+\ Dog years  (exsample 14)
+getYMD                                       \ ( Day Month Year )
+\ Compair this year and Birth-year
+BirthDay W@ - dup 0>                         \ ( Day Month result 1/0 )
+if
+     \ Compair this month and Birth-month
+     over BirthDay 2+ W@ <=
+     if 
+          \ Compair this month and Birth-month
+          over BirthDay 2+ W@ =
+          if
+               2 ST@ BirthDay 4 + W@ < if 1- then
+          else
+               1-
+          then          
+     then
+then                                         \ ( Day Month result )
+dup                                          \ ( Day Month result result )
+                                       
+\ Print age
+d10 u/mod dup if 7 3 charPos h2330 + FCGROM else drop then  \    (exsample 72.4)
+9 3 charPos h2330 + FCGROM
+                                               
+\ In human years
+dup 0>                                       \ ( Day Month result 1/0 )
+if
+     \ more than 1year
+     2 - 4* d24 +                            \ 24+(age-2)*4
+     livingDay W@ d365 u/mod drop 4*         \ ( Day Month [24+(age-2)*4] reminder*4 )    *not calculating leap
+     dup d365 >
+     if
+          d365 u/mod rot + swap
+     then                                                               
+     d10 * d365 u/mod nip                    \ ( Day Month integer fraction )
+     \ Print age in human years
+     d18 3 charPos h30 + HCGROM
+     d15 3 charPos prtHC
+     d250 pulse W!                           \ Save pulse for Lchika
+else
+     drop                                              
+     \ less than 1year
+     ageList 5 0 do 
+          dup i 2 * + C@ livingDay W@ <=     \ Compare day and livingDay 
+          if i 5 seti then 
+     loop                                    \ ( Day Month ageList index )
+     2 * + dup                               \ ( Day Month ageList ageList )
+     dup 1+ C@ pulse W!                      \ Save pulse for Lchika
+     C@ livingDay W@ - swap dup              \ ( Day Month reminder ageList ageList )
+     1+ C@ swap 1+ C@                        \ ( Day Month reminder year multiple )
+     rot * d365 u/mod rot +                  \ ( Day Month reminder year )
+     d15 3 charPos prtHC                     \ 2digit
+     d18 3 charPos h30 + HCGROM              \ 1digit
+then
+2drop 
+;
+  
+\ Check  whether pin is hi or lo
+: pinStatus? pin >m ina COG@ and ; 
+\ Check short-pin
+\ ( -- n1 )  n1:true(pin-off) false(pin-on)
+: chkPin pinStatus? dup 0= if drop d100 delms pinStatus? then ;
+\ changing frqa
+\ ( -- )
+: chgFRQA pulse W@ 2* d53687 swap / h1FA COG! ;
+
+\ Blinking pulse for Dog's 1second
+\ ( -- )  n1:multiple
+: Lchika  
+h10000000 LED or h1F8 COG!                   \ NCO/PWM single-mode to ctra
+\ frqa=freq(PHS bit31)*2^32/80M=(1000/multiple)*2^32/80M=53687/multiple
+chgFRQA                                      \ Set frqa
+;
+
+\ Print informations on LCD
+\ ( -- )
+: DogLifeClock
+\ initial
+init 
+\ Check eeprom
+d32764 4 0 do dup EW@ swap 2- loop drop 
+dup 0>
+if
+     prtDeath
+     begin 0 until                      \ inifinity loop     
+else
+     outa COG@ hCFFFFFFF and outa COG!  \ Back to i2c-line
+     3drop drop
+then 
+initMSG
+prtTime
+0 livingDay W! 0 flag W!  1 check W!
+calcLivingDay livingDay W@ prtLivingDay
+updateAge
+Lchika
+
+0 
+d16000000 cnt COG@ +                    \ 200msec loop
+begin
+     prtTime                            \ Update time
+     flag W@ check W@ and
+     if                                
+          \ Update age and livingdays
+          updateAge
+          chgFRQA
+          1 livingDay W+! 
+          livingDay W@ prtLivingDay
+          0 check W!
+     else
+          flag W@ 0= if 1 check W! then
+     then 
+     \ Blink ":"    
+     swap                               \ ( cnt 0 ) 
+     1+ dup 5 =
+     if 
+          drop 0              
+          d18 1 charPos 
+          blink W@ if h3A 0 blink W! else h20 1 blink W! then HCGROM 
+     thens
+     swap                               \ ( 1 cnt )
+     d16000000 waitcnt
+     \ Search check-pin
+     chkPin                             
+     if 
+          getYMD 
+          d32758 EW! d32760 EW! d32762 EW!   \ Write year/month/day to eeprom
+          livingDay W@ d32764 EW!            \ Write livingDat to eeprom
+          reboot
+     then
+     fkey? swap drop
+ until
+2drop
+;
+
+\ Clear data in eeprom
+\ Using when writing data to eeprom by mistake
+\ ( -- )
+: eepromClr d32758 4 0 do dup 0 swap EW! 2+ loop drop ;
+
+\ Read data from eeprom
+\ ( -- n1 n2 n3 n4 n5 )
+: eepromRD d32758 4 0 do dup EW@ . 2+ loop drop ;
+
+\ Boot after Power-on
+: onreset5 onreset DogLifeClock ;
